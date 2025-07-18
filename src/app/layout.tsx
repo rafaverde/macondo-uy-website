@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import "./globals.css";
+import { Header } from "./components/header";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -22,7 +23,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${onest.variable} ${onest.className} antialiased`}>
-        {children}
+        <Header />
+        <main>{children}</main>
       </body>
     </html>
   );
