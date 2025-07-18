@@ -3,7 +3,7 @@ import macondoLogo from "../../assets/marca-macondo.svg";
 
 export function Header() {
   return (
-    <header className="bg-background border-b sticky z-50">
+    <header className="bg-background shadow sticky z-50">
       <div className="container mx-auto flex items-center justify-between">
         <Image src={macondoLogo} alt="" />
         <nav>
