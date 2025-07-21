@@ -27,7 +27,7 @@ export function MobileMenu() {
 
         <SheetContent
           side="top"
-          className="h-full items-center justify-center p-6 text-center"
+          className="h-full items-center justify-center p-6 text-center md:hidden"
         >
           <SheetTitle hidden>Menu</SheetTitle>
           <SheetDescription hidden>Mobile Menu Navigation</SheetDescription>
@@ -66,7 +66,11 @@ export function MobileMenu() {
                 setIsOpen(false);
               }}
             >
-              <Link href="https://wa.me/5584994667667" target="_blank">
+              <Link
+                href="https://wa.me/5584994667667"
+                target="_blank"
+                className="flex items-center gap-2"
+              >
                 Quiero Hablar
                 <WhatsappLogoIcon size={30} color="#ffffff" />
               </Link>

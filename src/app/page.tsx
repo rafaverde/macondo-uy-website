@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="h-[1280px] bg-zinc-400">
+    <div className="bg-background h-[1280px]">
       <h1>Hello, World.</h1>;
     </div>
   );

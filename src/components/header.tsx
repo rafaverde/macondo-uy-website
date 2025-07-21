@@ -104,8 +104,8 @@ export function Header() {
                 >
                   <Link href="https://wa.me/5584994667667" target="_blank">
                     <Button
-                      className="hover:bg-destructive cursor-pointer"
-                      size={isScrolled ? "sm" : "default"}
+                      className="hover:bg-foreground cursor-pointer transition-colors duration-500"
+                      size={isScrolled ? "sm" : "lg"}
                     >
                       Quiero Hablar
                       <WhatsappLogoIcon size={30} color="#ffffff" />
