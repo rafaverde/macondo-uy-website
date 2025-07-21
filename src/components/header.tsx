@@ -15,6 +15,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { WhatsappLogoIcon } from "@phosphor-icons/react";
+import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -106,6 +108,7 @@ export function Header() {
                       size={isScrolled ? "sm" : "default"}
                     >
                       Quiero Hablar
+                      <WhatsappLogoIcon size={30} color="#ffffff" />
                     </Button>
                   </Link>
                 </NavigationMenuLink>
@@ -113,6 +116,8 @@ export function Header() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
+
+        <MobileMenu />
       </div>
     </header>
   );
