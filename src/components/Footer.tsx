@@ -39,7 +39,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="bg-foreground py-17">
+      <div className="bg-foreground py-16">
         <div className="container mx-auto grid grid-rows-3 justify-center gap-8 px-4 md:grid-cols-3 md:grid-rows-1">
           <div className="text-background order-3 md:order-0">
             <Image
@@ -115,14 +115,14 @@ export function Footer() {
                 <Facebook size={20} />
               </Link>
               <Link
-                href="https://www.youtube.com/macondopropaganda"
+                href="https://www.youtube.com/@macondopropaganda"
                 target="_blank"
                 className="hover:text-destructive transition-colors duration-300"
               >
                 <Youtube size={20} />
               </Link>
               <Link
-                href="https://www.linkedin.com/macondopropaganda"
+                href="https://www.linkedin.com/company/macondopropaganda/"
                 target="_blank"
                 className="hover:text-destructive transition-colors duration-300"
               >
