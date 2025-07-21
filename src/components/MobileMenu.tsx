@@ -67,7 +67,7 @@ export function MobileMenu() {
               }}
             >
               <Link
-                href="https://wa.me/5584994667667"
+                href="https://bit.ly/macondouy"
                 target="_blank"
                 className="flex items-center gap-2"
               >

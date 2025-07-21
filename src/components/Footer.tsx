@@ -31,7 +31,7 @@ export function Footer() {
             size="lg"
             className="hover:bg-foreground transition-colors duration-500"
           >
-            <Link href="#" target="_blank">
+            <Link href="https://bit.ly/macondouy" target="_blank">
               Si, quiero conversar ahora
               <ArrowRight />
             </Link>

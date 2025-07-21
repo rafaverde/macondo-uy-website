@@ -102,7 +102,7 @@ export function Header() {
                     "group bg-transparent hover:bg-transparent focus:bg-transparent",
                   )}
                 >
-                  <Link href="https://wa.me/5584994667667" target="_blank">
+                  <Link href="https://bit.ly/macondouy" target="_blank">
                     <Button
                       className="hover:bg-foreground cursor-pointer transition-colors duration-500"
                       size={isScrolled ? "sm" : "lg"}
