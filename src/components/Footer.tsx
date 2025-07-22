@@ -21,11 +21,12 @@ import { YoutubeIcon } from "./icons/YoutubeIcon";
 import { LinkedinIcon } from "./icons/LinkedinIcon";
 import { WhatsappIcon } from "./icons/WhatsappIcon";
 
-const iconMap: Partial<Record<IconName, ElementType>> = {
+const iconMap: Record<IconName, ElementType> = {
   Facebook: FacebookIcon,
   Instagram: InstagramIcon,
   Youtube: YoutubeIcon,
   Linkedin: LinkedinIcon,
+  Whatsapp: WhatsappIcon,
 };
 
 export function Footer() {
