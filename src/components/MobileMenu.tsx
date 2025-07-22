@@ -10,8 +10,9 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import Link from "next/link";
-import { WhatsappLogoIcon } from "@phosphor-icons/react";
+
 import { useState } from "react";
+import { NAV_CTAS, NAV_LINKS } from "@/lib/constants";
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,49 +33,42 @@ export function MobileMenu() {
           <SheetTitle hidden>Menu</SheetTitle>
           <SheetDescription hidden>Mobile Menu Navigation</SheetDescription>
           <nav className="mt-8 grid gap-6 text-lg font-medium">
-            <Link
-              href="/#paraquien"
-              className="text-muted-foreground hover:text-foreground"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              Para quién es Macondo
-            </Link>
-            <Link
-              href="/#servicios"
-              className="text-muted-foreground hover:text-foreground"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              Servicios y soluciones
-            </Link>
-            <Link
-              href="/#trabajos"
-              className="text-muted-foreground hover:text-foreground"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              Nuestros trabajos
-            </Link>
-            <Button
-              asChild
-              className="mt-4"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
+            {NAV_LINKS.map((link) => (
               <Link
-                href="https://bit.ly/macondouy"
-                target="_blank"
-                className="flex items-center gap-2"
+                key={link.title}
+                href={link.href}
+                className="text-muted-foreground hover:text-foreground"
+                onClick={() => {
+                  setIsOpen(false);
+                }}
               >
-                Quiero Hablar
-                <WhatsappLogoIcon size={30} color="#ffffff" />
+                {link.title}
               </Link>
-            </Button>
+            ))}
+
+            {NAV_CTAS.map((cta) => {
+              const IconElement = cta.icon;
+
+              return (
+                <Button
+                  key={cta.title}
+                  asChild
+                  className="mt-4"
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
+                  <Link
+                    href={cta.href}
+                    target={cta.isExternal ? "_blank" : "_self"}
+                    className="flex items-center gap-2"
+                  >
+                    {cta.title}
+                    <IconElement size={30} color="#ffffff" />
+                  </Link>
+                </Button>
+              );
+            })}
           </nav>
         </SheetContent>
       </Sheet>
