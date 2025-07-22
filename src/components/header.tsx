@@ -13,10 +13,15 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { ElementType, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { WhatsappLogoIcon } from "@phosphor-icons/react";
 import { MobileMenu } from "./MobileMenu";
+import { type IconName, NAV_CTAS, NAV_LINKS } from "@/lib/constants";
+import { WhatsappIcon } from "./icons/WhatsappIcon";
+
+const iconMap: Partial<Record<IconName, ElementType>> = {
+  Whatsapp: WhatsappIcon,
+};
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,57 +67,52 @@ export function Header() {
         <div className="hidden md:flex">
           <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  asChild
-                  className={cn(
-                    "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                    isScrolled ? "py-1 text-sm" : "py-2 text-base",
-                  )}
-                >
-                  <Link href="#paraquien">Para quién es Macondo</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  asChild
-                  className={cn(
-                    "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                    isScrolled ? "py-1 text-sm" : "py-2 text-base",
-                  )}
-                >
-                  <Link href="#servicios">Servicios y soluciones</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  asChild
-                  className={cn(
-                    "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                    isScrolled ? "py-1 text-sm" : "py-2 text-base",
-                  )}
-                >
-                  <Link href="#trabajos">Nuestros trabajos</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  asChild
-                  className={cn(
-                    "group bg-transparent hover:bg-transparent focus:bg-transparent",
-                  )}
-                >
-                  <Link href="https://bit.ly/macondouy" target="_blank">
-                    <Button
-                      className="hover:bg-foreground cursor-pointer transition-colors duration-500"
-                      size={isScrolled ? "sm" : "lg"}
+              {NAV_LINKS.map((link) => (
+                <NavigationMenuItem key={link.title}>
+                  <NavigationMenuLink
+                    asChild
+                    className={cn(
+                      "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                      isScrolled ? "py-1 text-sm" : "py-2 text-base",
+                    )}
+                  >
+                    <Link href={link.href}>{link.title}</Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+
+              {NAV_CTAS.map((cta) => {
+                const IconElement = iconMap[cta.iconName];
+
+                return (
+                  <NavigationMenuItem key={cta.title}>
+                    <NavigationMenuLink
+                      asChild
+                      className={cn(
+                        "group bg-transparent hover:bg-transparent focus:bg-transparent",
+                      )}
                     >
-                      Quiero Hablar
-                      <WhatsappLogoIcon size={30} color="#ffffff" />
-                    </Button>
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+                      <Link
+                        href={cta.href}
+                        target={cta.isExternal ? "_blank" : "_self"}
+                      >
+                        <Button
+                          className="hover:bg-foreground cursor-pointer transition-colors duration-500"
+                          size={isScrolled ? "sm" : "lg"}
+                        >
+                          {cta.title}
+                          {IconElement && (
+                            <IconElement
+                              size={30}
+                              className="text-background"
+                            />
+                          )}
+                        </Button>
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                );
+              })}
             </NavigationMenuList>
           </NavigationMenu>
         </div>

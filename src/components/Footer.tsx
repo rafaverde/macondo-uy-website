@@ -4,16 +4,30 @@ import Image from "next/image";
 import macondoLogo from "@/assets/marca-macondo.svg";
 
 import { Button } from "./ui/button";
+import { ArrowRight, ChevronRight, Mail, PhoneCall } from "lucide-react";
 import {
-  ArrowRight,
-  ChevronRight,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  PhoneCall,
-  Youtube,
-} from "lucide-react";
+  EMAIL_ADDRESS,
+  IconName,
+  NAV_LINKS,
+  PHONE_LINK,
+  PHONE_NUMBER,
+  SOCIAL_LINKS,
+  WHATSAPP_LINK,
+} from "@/lib/constants";
+import { ElementType } from "react";
+import { FacebookIcon } from "./icons/FacebookIcon";
+import { InstagramIcon } from "./icons/InstagramIcon";
+import { YoutubeIcon } from "./icons/YoutubeIcon";
+import { LinkedinIcon } from "./icons/LinkedinIcon";
+import { WhatsappIcon } from "./icons/WhatsappIcon";
+
+const iconMap: Record<IconName, ElementType> = {
+  Facebook: FacebookIcon,
+  Instagram: InstagramIcon,
+  Youtube: YoutubeIcon,
+  Linkedin: LinkedinIcon,
+  Whatsapp: WhatsappIcon,
+};
 
 export function Footer() {
   return (
@@ -31,7 +45,7 @@ export function Footer() {
             size="lg"
             className="hover:bg-foreground transition-colors duration-500"
           >
-            <Link href="https://bit.ly/macondouy" target="_blank">
+            <Link href={WHATSAPP_LINK} target="_blank">
               Si, quiero conversar ahora
               <ArrowRight />
             </Link>
@@ -56,78 +70,68 @@ export function Footer() {
               Comunicación
             </p>
           </div>
+
           <div className="text-background space-y-3">
             <h4 className="text-xs uppercase">Navegar</h4>
-            <Link
-              href="#"
-              className="hover:text-primary flex items-center transition-all duration-300"
-            >
-              <ChevronRight className="text-primary" /> Portfolio
-            </Link>
 
-            <Link
-              href="#"
-              className="hover:text-primary flex items-center transition-all duration-300"
-            >
-              <ChevronRight className="text-primary" /> Nuestros Servicios
-            </Link>
+            {NAV_LINKS.map((link) => {
+              if (link.isOnFooter) {
+                return (
+                  <Link
+                    key={link.title + link.href}
+                    href={link.href}
+                    className="hover:text-primary flex items-center gap-1 transition-all duration-300"
+                  >
+                    <ChevronRight className="text-primary" /> {link.title}
+                  </Link>
+                );
+              }
+            })}
 
             <Link
               href="https://www.macondopropaganda.com"
               target="_blank"
-              className="hover:text-primary mt-8 flex items-center transition-all duration-300"
+              className="hover:text-primary mt-8 flex items-center gap-1 transition-all duration-300"
             >
-              <ChevronRight className="text-primary" /> Macondo
+              <ChevronRight className="text-primary" /> Macondo{" "}
               <span className="text-primary"> Brasil</span>
             </Link>
           </div>
+
           <div className="text-background space-y-3">
             <h4 className="text-xs uppercase">Contacto y Redes Sociales</h4>
             <Link
-              href="mailto:contacto@macondopropaganda.com.uy"
+              href={`mailto:${EMAIL_ADDRESS}`}
               className="hover:text-primary flex items-center justify-start gap-2 transition-colors duration-300"
             >
               <Mail size={20} className="text-primary" />
-              contacto@macondopropaganda.com.uy
+              {EMAIL_ADDRESS}
             </Link>
 
             <Link
-              href="tel:095006439"
+              href={PHONE_LINK}
               className="hover:text-primary flex items-center justify-start gap-2 transition-colors duration-300"
             >
               <PhoneCall size={20} className="text-primary" />
-              095006439
+              {PHONE_NUMBER}
             </Link>
 
             <div className="text-primary flex items-center gap-2">
-              <Link
-                href="https://www.instagram.com/macondopropaganda"
-                target="_blank"
-                className="hover:text-destructive transition-colors duration-300"
-              >
-                <Instagram size={20} />
-              </Link>
-              <Link
-                href="https://www.facebook.com/macondopropaganda"
-                target="_blank"
-                className="hover:text-destructive transition-colors duration-300"
-              >
-                <Facebook size={20} />
-              </Link>
-              <Link
-                href="https://www.youtube.com/@macondopropaganda"
-                target="_blank"
-                className="hover:text-destructive transition-colors duration-300"
-              >
-                <Youtube size={20} />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/company/macondopropaganda/"
-                target="_blank"
-                className="hover:text-destructive transition-colors duration-300"
-              >
-                <Linkedin size={20} />
-              </Link>
+              {SOCIAL_LINKS.map((link) => {
+                const IconElement = iconMap[link.iconName];
+
+                return (
+                  <Link
+                    key={link.title + link.href}
+                    href={link.href}
+                    title={link.title}
+                    target="_blank"
+                    className="hover:text-destructive h-7 w-7 transition-colors duration-300"
+                  >
+                    {IconElement && <IconElement />}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
