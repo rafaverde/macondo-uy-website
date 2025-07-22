@@ -13,10 +13,15 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { ElementType, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
-import { NAV_CTAS, NAV_LINKS } from "@/lib/constants";
+import { type IconName, NAV_CTAS, NAV_LINKS } from "@/lib/constants";
+import { WhatsappIcon } from "./icons/WhatsappIcon";
+
+const iconMap: Partial<Record<IconName, ElementType>> = {
+  Whatsapp: WhatsappIcon,
+};
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -77,7 +82,7 @@ export function Header() {
               ))}
 
               {NAV_CTAS.map((cta) => {
-                const IconElement = cta.icon;
+                const IconElement = iconMap[cta.iconName];
 
                 return (
                   <NavigationMenuItem key={cta.title}>
@@ -96,7 +101,12 @@ export function Header() {
                           size={isScrolled ? "sm" : "lg"}
                         >
                           {cta.title}
-                          <IconElement size={30} color="#ffffff" />
+                          {IconElement && (
+                            <IconElement
+                              size={30}
+                              className="text-background"
+                            />
+                          )}
                         </Button>
                       </Link>
                     </NavigationMenuLink>

@@ -11,8 +11,13 @@ import {
 } from "./ui/sheet";
 import Link from "next/link";
 
-import { useState } from "react";
-import { NAV_CTAS, NAV_LINKS } from "@/lib/constants";
+import { ElementType, useState } from "react";
+import { IconName, NAV_CTAS, NAV_LINKS } from "@/lib/constants";
+import { WhatsappIcon } from "./icons/WhatsappIcon";
+
+const iconMap: Partial<Record<IconName, ElementType>> = {
+  Whatsapp: WhatsappIcon,
+};
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +52,7 @@ export function MobileMenu() {
             ))}
 
             {NAV_CTAS.map((cta) => {
-              const IconElement = cta.icon;
+              const IconElement = iconMap[cta.iconName];
 
               return (
                 <Button
@@ -64,7 +69,7 @@ export function MobileMenu() {
                     className="flex items-center gap-2"
                   >
                     {cta.title}
-                    <IconElement size={30} color="#ffffff" />
+                    {IconElement && <IconElement size={30} />}
                   </Link>
                 </Button>
               );
