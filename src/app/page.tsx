@@ -1,24 +1,7 @@
 import { HeroSlider } from "@/components/HeroSlider";
 import { GET_ALL_SLIDES } from "@/graphql/queries";
 import { client } from "@/lib/apollo";
-
-export interface SlideResponse {
-  slidesFg: {
-    caption: string;
-    title: string;
-    description: string;
-    buttonText: string;
-    buttonLink: string;
-    image: {
-      node: {
-        sourceUrl: string;
-        altText: string;
-      };
-    };
-    active: boolean;
-    order: number;
-  };
-}
+import { SlideResponse } from "@/lib/types";
 
 export default async function Home() {
   const { data } = await client.query({

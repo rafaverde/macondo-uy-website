@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { SlideResponse } from "@/app/page";
+
 import {
   Carousel,
   type CarouselApi,
@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { SlideResponse } from "@/lib/types";
 
 export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
   const [api, setApi] = useState<CarouselApi>();
