@@ -52,7 +52,7 @@ export function ParaQuienSection() {
             return (
               <div
                 key={index}
-                className="flex flex-col items-center gap-3 md:w-1/3"
+                className="flex flex-col items-center gap-3 md:flex-1"
               >
                 <div className="border-destructive flex h-24 w-24 items-center justify-center rounded-full border-3">
                   {IconComponent && (
