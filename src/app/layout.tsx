@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className="scroll-smooth">
       <body className={`${onest.variable} ${onest.className} antialiased`}>
         <h1 className="sr-only">
           Agencia de marketing y comunicaciones en Uruguay para empresas de

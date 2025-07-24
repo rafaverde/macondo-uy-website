@@ -44,11 +44,12 @@ export function Header() {
 
   return (
     <header
+      id="top"
       className={`bg-background sticky top-0 z-50 ${isScrolled ? "h-[50px]" : "h-[70px]"} shadow transition-all duration-300`}
     >
       <div className="container mx-auto flex h-full items-center justify-between px-4">
         {isScrolled ? (
-          <Link href="/">
+          <Link href="#top">
             <Image
               src={macondoIcon}
               alt="Macondo Marketing & Comunicación Logo"
