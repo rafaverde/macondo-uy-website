@@ -28,7 +28,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 70) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -53,7 +53,7 @@ export function Header() {
             <Image
               src={macondoIcon}
               alt="Macondo Marketing & Comunicación Logo"
-              className={`transition-all duration-300 ${isScrolled ? "h-[30px] opacity-100" : "h-[0px] opacity-0"}`}
+              className={`w-auto transition-all duration-300 ${isScrolled ? "h-[30px] opacity-100" : "h-[0px] opacity-0"}`}
             />
           </Link>
         ) : (
@@ -61,7 +61,7 @@ export function Header() {
             <Image
               src={macondoLogo}
               alt="Macondo Marketing & Comunicación Logo"
-              className={`transition-all duration-300 ${isScrolled ? "h-[0px] opacity-0" : "h-[70px] opacity-100"}`}
+              className={`w-auto transition-all duration-300 ${isScrolled ? "h-[0px] opacity-0" : "h-[70px] opacity-100"}`}
             />
           </Link>
         )}

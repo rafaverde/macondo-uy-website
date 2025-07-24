@@ -1,4 +1,5 @@
 import { HeroSlider } from "@/components/HeroSlider";
+import { EquipoSection } from "@/components/sections/EquipoSection";
 import { ParaQuienSection } from "@/components/sections/ParaQuienSection";
 import { GET_ALL_SLIDES } from "@/graphql/queries";
 import { client } from "@/lib/apollo";
@@ -15,6 +16,8 @@ export default async function Home() {
     <div className="bg-background">
       <HeroSlider slides={slides} />
       <ParaQuienSection />
+
+      <EquipoSection />
     </div>
   );
 }
