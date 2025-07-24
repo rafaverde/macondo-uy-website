@@ -65,7 +65,7 @@ export function Header() {
           </Link>
         )}
         <div className="hidden md:flex">
-          <NavigationMenu>
+          <NavigationMenu title="Menu de navegação">
             <NavigationMenuList>
               {NAV_LINKS.map((link) => (
                 <NavigationMenuItem key={link.title}>

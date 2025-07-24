@@ -25,6 +25,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${onest.variable} ${onest.className} antialiased`}>
+        <h1 className="sr-only">
+          Agencia de marketing y comunicaciones en Uruguay para empresas de
+          todos los tamaños.
+        </h1>
         <Header />
         <main>{children}</main>
         <Footer />
