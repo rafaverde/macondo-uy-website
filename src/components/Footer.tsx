@@ -38,13 +38,8 @@ export function Footer() {
             Ahora ya sabes que hay una agencia de marketing para emprendimientos
             como el tuyo
           </h2>
-          <p>Tenemos un gran equipo y un precio que podés pagar.</p>
 
-          <Button
-            asChild
-            size="lg"
-            className="hover:bg-foreground transition-colors duration-500"
-          >
+          <Button asChild size="xl" className="mt-5">
             <Link href={WHATSAPP_LINK} target="_blank">
               Si, quiero conversar ahora
               <ArrowRight />

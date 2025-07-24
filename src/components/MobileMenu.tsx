@@ -58,10 +58,11 @@ export function MobileMenu() {
                 <Button
                   key={cta.title}
                   asChild
-                  className="mt-4"
+                  className="mt-4 text-base"
                   onClick={() => {
                     setIsOpen(false);
                   }}
+                  size="xl"
                 >
                   <Link
                     href={cta.href}

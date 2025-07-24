@@ -28,7 +28,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 100) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -40,19 +40,20 @@ export function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isScrolled]);
 
   return (
     <header
+      id="top"
       className={`bg-background sticky top-0 z-50 ${isScrolled ? "h-[50px]" : "h-[70px]"} shadow transition-all duration-300`}
     >
       <div className="container mx-auto flex h-full items-center justify-between px-4">
         {isScrolled ? (
-          <Link href="/">
+          <Link href="#top">
             <Image
               src={macondoIcon}
               alt="Macondo Marketing & Comunicación Logo"
-              className={`transition-all duration-300 ${isScrolled ? "h-[30px] opacity-100" : "h-[0px] opacity-0"}`}
+              className={`w-auto transition-all duration-300 ${isScrolled ? "h-[30px] opacity-100" : "h-[0px] opacity-0"}`}
             />
           </Link>
         ) : (
@@ -60,20 +61,19 @@ export function Header() {
             <Image
               src={macondoLogo}
               alt="Macondo Marketing & Comunicación Logo"
-              className={`transition-all duration-300 ${isScrolled ? "h-[0px] opacity-0" : "h-[70px] opacity-100"}`}
+              className={`w-auto transition-all duration-300 ${isScrolled ? "h-[0px] opacity-0" : "h-[70px] opacity-100"}`}
             />
           </Link>
         )}
         <div className="hidden md:flex">
-          <NavigationMenu>
+          <NavigationMenu title="Menu de navegação">
             <NavigationMenuList>
               {NAV_LINKS.map((link) => (
                 <NavigationMenuItem key={link.title}>
                   <NavigationMenuLink
                     asChild
                     className={cn(
-                      "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                      isScrolled ? "py-1 text-sm" : "py-2 text-base",
+                      "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent text-sm font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
                     )}
                   >
                     <Link href={link.href}>{link.title}</Link>
@@ -97,7 +97,7 @@ export function Header() {
                         target={cta.isExternal ? "_blank" : "_self"}
                       >
                         <Button
-                          className="hover:bg-foreground cursor-pointer transition-colors duration-500"
+                          className="cursor-pointer"
                           size={isScrolled ? "sm" : "lg"}
                         >
                           {cta.title}

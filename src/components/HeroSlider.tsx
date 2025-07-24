@@ -15,6 +15,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SlideResponse } from "@/lib/types";
+import Autoplay from "embla-carousel-autoplay";
 
 export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
   const [api, setApi] = useState<CarouselApi>();
@@ -41,7 +42,12 @@ export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
 
   return (
     <section className="relative w-full">
-      <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
+      <Carousel
+        setApi={setApi}
+        opts={{ loop: true }}
+        plugins={[Autoplay({ delay: 8000, stopOnInteraction: false })]}
+        className="w-full"
+      >
         <CarouselContent>
           {sortedSlides.map((slide, index) => (
             <CarouselItem key={index} className="relative h-[670px] w-full">
@@ -70,12 +76,8 @@ export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
                     className="text-secondary"
                   ></div>
 
-                  <Button
-                    asChild
-                    size="lg"
-                    className="hover:bg-foreground mt-5 transition-colors duration-300"
-                  >
-                    <Link href={slide.slidesFg.buttonLink}>
+                  <Button asChild size="xl" className="mt-5">
+                    <Link href={slide.slidesFg.buttonLink} target="_blank">
                       {slide.slidesFg.buttonText}
                       <ArrowRight />
                     </Link>
