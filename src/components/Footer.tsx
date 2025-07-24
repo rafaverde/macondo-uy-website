@@ -39,11 +39,7 @@ export function Footer() {
             como el tuyo
           </h2>
 
-          <Button
-            asChild
-            size="xl"
-            className="hover:bg-foreground mt-5 transition-colors duration-500"
-          >
+          <Button asChild size="xl" className="mt-5">
             <Link href={WHATSAPP_LINK} target="_blank">
               Si, quiero conversar ahora
               <ArrowRight />

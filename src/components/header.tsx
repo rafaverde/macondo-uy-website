@@ -73,8 +73,7 @@ export function Header() {
                   <NavigationMenuLink
                     asChild
                     className={cn(
-                      "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                      isScrolled ? "py-1 text-sm" : "py-2 text-base",
+                      "group hover:text-primary inline-flex items-center justify-center rounded-md bg-transparent text-sm font-medium transition-colors duration-300 hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50",
                     )}
                   >
                     <Link href={link.href}>{link.title}</Link>
@@ -98,7 +97,7 @@ export function Header() {
                         target={cta.isExternal ? "_blank" : "_self"}
                       >
                         <Button
-                          className="hover:bg-foreground cursor-pointer transition-colors duration-500"
+                          className="cursor-pointer"
                           size={isScrolled ? "sm" : "lg"}
                         >
                           {cta.title}

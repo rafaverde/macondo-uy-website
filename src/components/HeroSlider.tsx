@@ -76,11 +76,7 @@ export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
                     className="text-secondary"
                   ></div>
 
-                  <Button
-                    asChild
-                    size="xl"
-                    className="hover:bg-foreground mt-5 transition-colors duration-300"
-                  >
+                  <Button asChild size="xl" className="mt-5">
                     <Link href={slide.slidesFg.buttonLink} target="_blank">
                       {slide.slidesFg.buttonText}
                       <ArrowRight />
