@@ -1,3 +1,4 @@
+// Slides
 export interface SlideResponse {
   slidesFg: {
     caption: string;
@@ -13,5 +14,31 @@ export interface SlideResponse {
     };
     active: boolean;
     order: number;
+  };
+}
+
+// Products
+export interface Product {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  productsFg: {
+    buttonText: string;
+    neededDescription: string;
+    price: string;
+    subtitle: string;
+    frontIcon: {
+      node: {
+        altText: string;
+        sourceUrl: string;
+      };
+    };
+  };
+}
+
+export interface ProductsResponse {
+  products: {
+    nodes: Product[];
   };
 }

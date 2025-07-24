@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// Slides
 export const GET_ALL_SLIDES = gql`
   query GetAllSlides {
     slides {
@@ -18,6 +19,32 @@ export const GET_ALL_SLIDES = gql`
           }
           order
           active
+        }
+      }
+    }
+  }
+`;
+
+// Products
+export const GET_ALL_PRODUCTS = gql`
+  query GetAllProducts {
+    products {
+      nodes {
+        id
+        title
+        slug
+        content
+        productsFg {
+          buttonText
+          neededDescription
+          price
+          subtitle
+          frontIcon {
+            node {
+              altText
+              sourceUrl
+            }
+          }
         }
       }
     }
