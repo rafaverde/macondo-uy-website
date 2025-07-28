@@ -37,7 +37,7 @@ export async function PortfolioShowCaseSection({
     >
       <div className="container mx-auto p-4">
         {!finalPortfolioCases || finalPortfolioCases.length === 0 ? (
-          <h2 className="text-primary mx-auto text-center text-2xl font-bold md:max-w-1/2">
+          <h2 className="text-primary mx-auto text-center text-2xl font-light md:max-w-1/2">
             Aún no hay casos registrados para esta categoría.
           </h2>
         ) : (
