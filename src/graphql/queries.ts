@@ -57,14 +57,14 @@ export const GET_PRODUCT_BY_SLUG = gql`
       id
       title
       slug
-      content # A descrição principal
+      content
       featuredImage {
         node {
           sourceUrl
           altText
         }
       }
-      productFields {
+      productsFg {
         subtitle
         price
         buttonText
@@ -98,6 +98,44 @@ export const GET_PORTFOLIO_CASES_BY_CATEGORY = gql`
           }
         }
         name
+      }
+    }
+  }
+`;
+
+export const GET_PORTFOLIO_CASES_BY_PRODUCT_ID = gql`
+  query GetPortfolioCasesByProductId($productId: ID!) {
+    portfolios(
+      first: 6
+      where: {
+        metaQuery: {
+          metaArray: [
+            {
+              key: "related_product"
+              value: $productId
+              compare: EQUAL_TO
+              type: NUMERIC
+            }
+          ]
+        }
+        orderby: { field: DATE, order: DESC }
+      }
+    ) {
+      nodes {
+        id
+        title
+        slug
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        portfolioCategories(first: 1) {
+          nodes {
+            name
+          }
+        }
       }
     }
   }
