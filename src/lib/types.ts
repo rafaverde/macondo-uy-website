@@ -35,6 +35,12 @@ export interface Product {
       };
     };
   };
+  productCategories?: {
+    nodes: {
+      name: string;
+      slug: string;
+    }[];
+  };
 }
 
 export interface ProductsResponse {

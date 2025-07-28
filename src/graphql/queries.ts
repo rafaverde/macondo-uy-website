@@ -51,6 +51,34 @@ export const GET_ALL_PRODUCTS = gql`
   }
 `;
 
+export const GET_PRODUCT_BY_SLUG = gql`
+  query GetProductBySlug($slug: ID!) {
+    product(id: $slug, idType: SLUG) {
+      id
+      title
+      slug
+      content # A descrição principal
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+      productFields {
+        subtitle
+        price
+        buttonText
+      }
+      productCategories(first: 1) {
+        nodes {
+          name
+          slug
+        }
+      }
+    }
+  }
+`;
+
 // Portfolio
 export const GET_PORTFOLIO_CASES_BY_CATEGORY = gql`
   query getPortfolioCasesByCategory($categoryName: [String]) {
