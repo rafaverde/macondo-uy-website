@@ -81,6 +81,7 @@ export const GET_LATEST_PORTFOLIO_CASES = gql`
       nodes {
         id
         slug
+        title
         featuredImage {
           node {
             sourceUrl
