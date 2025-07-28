@@ -98,7 +98,11 @@ export default async function ProductPage({
             }}
           ></div>
 
-          <Button asChild size="xl">
+          <Button
+            asChild
+            size="xl"
+            className="border-primary hover:border-border border hover:border"
+          >
             <Link
               href={WHATSAPP_LINK}
               target="_blank"
