@@ -69,12 +69,6 @@ export const GET_PRODUCT_BY_SLUG = gql`
         price
         buttonText
       }
-      productCategories(first: 1) {
-        nodes {
-          name
-          slug
-        }
-      }
     }
   }
 `;
@@ -108,16 +102,7 @@ export const GET_PORTFOLIO_CASES_BY_PRODUCT_ID = gql`
     portfolios(
       first: 6
       where: {
-        metaQuery: {
-          metaArray: [
-            {
-              key: "related_product"
-              value: $productId
-              compare: EQUAL_TO
-              type: NUMERIC
-            }
-          ]
-        }
+        relatedProductId: $productId
         orderby: { field: DATE, order: DESC }
       }
     ) {
@@ -143,7 +128,7 @@ export const GET_PORTFOLIO_CASES_BY_PRODUCT_ID = gql`
 
 export const GET_LATEST_PORTFOLIO_CASES = gql`
   query GetLatestPortfolioCases {
-    portfolios(first: 6, where: { orderby: { field: DATE, order: DESC } }) {
+    portfolios(first: 50, where: { orderby: { field: DATE, order: DESC } }) {
       nodes {
         id
         slug
@@ -157,6 +142,15 @@ export const GET_LATEST_PORTFOLIO_CASES = gql`
         portfolioCategories(first: 1) {
           nodes {
             name
+          }
+        }
+        portfolioFg {
+          relatedProduct {
+            nodes {
+              ... on Product {
+                id
+              }
+            }
           }
         }
       }

@@ -66,4 +66,11 @@ export interface PortifolioCase {
       slug: string;
     }[];
   };
+  portfolioFg: {
+    relatedProduct: {
+      nodes: {
+        id: string;
+      }[];
+    };
+  };
 }

@@ -16,24 +16,28 @@ export async function PortfolioShowCaseSection({
   productId?: string;
   categoryTitle?: string;
 }) {
-  let portfolioCases: PortifolioCase[] = [];
+  const { data } = await client.query({
+    query: GET_LATEST_PORTFOLIO_CASES,
+  });
+
+  const allPortfolioCases: PortifolioCase[] = data.portfolios?.nodes || [];
+  let finalPortfolioCases: PortifolioCase[] = [];
 
   if (productId) {
-    const { data } = await client.query({
-      query: GET_PORTFOLIO_CASES_BY_PRODUCT_ID,
-      variables: { productId },
-    });
-
-    portfolioCases = data.portfolios?.nodes || [];
+    finalPortfolioCases = allPortfolioCases.filter(
+      (portfolio) =>
+        portfolio.portfolioFg.relatedProduct.nodes[0].id === productId,
+    );
   } else {
-    const { data } = await client.query({
-      query: GET_LATEST_PORTFOLIO_CASES,
-    });
-
-    portfolioCases = data.portfolios?.nodes || [];
+    finalPortfolioCases = allPortfolioCases.slice(0, 6);
   }
 
-  if (!portfolioCases || portfolioCases.length === 0) {
+  console.log(productId);
+
+  console.log("Final Portfolio:", finalPortfolioCases);
+  console.log("All Portfolio:", allPortfolioCases);
+
+  if (!finalPortfolioCases || finalPortfolioCases.length === 0) {
     return null;
   }
 
@@ -54,7 +58,7 @@ export async function PortfolioShowCaseSection({
           </p>
         )}
 
-        <PortfolioSlider portfolioCases={portfolioCases} />
+        <PortfolioSlider portfolioCases={finalPortfolioCases} />
         <div className="mt-8 w-full text-center">
           <Button asChild size="xl">
             <Link href="/portfolio">
