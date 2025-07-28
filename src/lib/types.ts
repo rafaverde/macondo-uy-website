@@ -35,6 +35,12 @@ export interface Product {
       };
     };
   };
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+      altText: string;
+    };
+  };
   productCategories?: {
     nodes: {
       name: string;
