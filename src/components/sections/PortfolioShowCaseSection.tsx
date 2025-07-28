@@ -39,7 +39,7 @@ export async function PortfolioShowCaseSection({
   console.log(portfolioCases);
 
   return (
-    <section className="bg-background w-full scroll-mt-[50px] pt-10 pb-4">
+    <section className="bg-background w-full scroll-mt-[50px] pt-10 pb-0">
       <div className="container mx-auto p-4">
         <h2 className="text-primary text-center text-2xl font-bold md:text-4xl">
           {categoryName
