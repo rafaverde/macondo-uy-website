@@ -42,3 +42,22 @@ export interface ProductsResponse {
     nodes: Product[];
   };
 }
+
+// Portfolio
+export interface PortifolioCase {
+  id: string;
+  title: string;
+  slug: string;
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+      altText: string;
+    };
+  };
+  portfolioCategories?: {
+    nodes: {
+      name: string;
+      slug: string;
+    }[];
+  };
+}
