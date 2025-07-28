@@ -51,6 +51,29 @@ export const GET_ALL_PRODUCTS = gql`
   }
 `;
 
+export const GET_PRODUCT_BY_SLUG = gql`
+  query GetProductBySlug($slug: ID!) {
+    product(id: $slug, idType: SLUG) {
+      id
+      title
+      slug
+      content
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+      productsFg {
+        subtitle
+        price
+        buttonText
+        neededDescription
+      }
+    }
+  }
+`;
+
 // Portfolio
 export const GET_PORTFOLIO_CASES_BY_CATEGORY = gql`
   query getPortfolioCasesByCategory($categoryName: [String]) {
@@ -75,9 +98,38 @@ export const GET_PORTFOLIO_CASES_BY_CATEGORY = gql`
   }
 `;
 
+export const GET_PORTFOLIO_CASES_BY_PRODUCT_ID = gql`
+  query GetPortfolioCasesByProductId($productId: ID!) {
+    portfolios(
+      first: 6
+      where: {
+        relatedProductId: $productId
+        orderby: { field: DATE, order: DESC }
+      }
+    ) {
+      nodes {
+        id
+        title
+        slug
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        portfolioCategories(first: 1) {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GET_LATEST_PORTFOLIO_CASES = gql`
   query GetLatestPortfolioCases {
-    portfolios(first: 6, where: { orderby: { field: DATE, order: DESC } }) {
+    portfolios(first: 50, where: { orderby: { field: DATE, order: DESC } }) {
       nodes {
         id
         slug
@@ -91,6 +143,15 @@ export const GET_LATEST_PORTFOLIO_CASES = gql`
         portfolioCategories(first: 1) {
           nodes {
             name
+          }
+        }
+        portfolioFg {
+          relatedProduct {
+            nodes {
+              ... on Product {
+                id
+              }
+            }
           }
         }
       }

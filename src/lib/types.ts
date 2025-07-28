@@ -35,6 +35,18 @@ export interface Product {
       };
     };
   };
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+      altText: string;
+    };
+  };
+  productCategories?: {
+    nodes: {
+      name: string;
+      slug: string;
+    }[];
+  };
 }
 
 export interface ProductsResponse {
@@ -59,5 +71,12 @@ export interface PortifolioCase {
       name: string;
       slug: string;
     }[];
+  };
+  portfolioFg: {
+    relatedProduct: {
+      nodes: {
+        id: string;
+      }[];
+    };
   };
 }

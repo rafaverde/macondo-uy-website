@@ -120,7 +120,19 @@
     @apply bg-background text-foreground;
   }
 
+  /* WP HTML style blocks */
+
+  /* Slider highlight text */
   .cms-content .highlight {
     @apply text-primary;
+  }
+
+  /* Lists dots */
+  .cms-content ul {
+    @apply mb-4 flex list-disc flex-col gap-1 pl-5;
+  }
+
+  .cms-content ul > li::marker {
+    @apply text-primary text-2xl;
   }
 }
