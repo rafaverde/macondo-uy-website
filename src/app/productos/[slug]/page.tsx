@@ -37,7 +37,7 @@ export default async function ProductPage({
   return (
     <>
       <section
-        id="paraquien"
+        id="product"
         className="bg-background w-full scroll-mt-[50px] py-10"
       >
         <div className="container mx-auto p-4">
@@ -47,10 +47,7 @@ export default async function ProductPage({
         </div>
       </section>
 
-      <PortfolioShowCaseSection
-        productId={product.id}
-        categoryTitle={product.title}
-      />
+      <PortfolioShowCaseSection productId={product.id} />
     </>
   );
 }
