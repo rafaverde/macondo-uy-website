@@ -28,7 +28,7 @@ export const GET_ALL_SLIDES = gql`
 // Products
 export const GET_ALL_PRODUCTS = gql`
   query GetAllProducts {
-    products {
+    products(where: { orderby: { field: DATE, order: ASC } }) {
       nodes {
         id
         title
