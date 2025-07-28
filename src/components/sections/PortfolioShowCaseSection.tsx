@@ -35,7 +35,10 @@ export async function PortfolioShowCaseSection({
   }
 
   return (
-    <section className="bg-background w-full scroll-mt-[50px] py-10">
+    <section
+      id="trabajos"
+      className="bg-background w-full scroll-mt-[50px] py-10"
+    >
       <div className="container mx-auto p-4">
         <h2 className="text-primary mx-auto text-center text-2xl font-bold md:max-w-1/2 md:text-4xl">
           {categoryTitle
