@@ -37,6 +37,7 @@ export default async function ProductPage({
   if (!product) {
     return <div>Produto não encontrado.</div>;
   }
+
   console.log(product);
 
   return (
@@ -114,7 +115,10 @@ export default async function ProductPage({
         </div>
       </section>
 
-      <PortfolioShowCaseSection productId={product.id} hasCategory />
+      <PortfolioShowCaseSection
+        productId={product.id}
+        categoryTitle={product.title}
+      />
     </>
   );
 }

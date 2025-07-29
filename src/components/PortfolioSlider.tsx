@@ -8,13 +8,13 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { PortfolioCard } from "./PortfolioCard";
-import { PortifolioCase } from "@/lib/types";
+import { PortfolioCase } from "@/lib/types";
 import Autoplay from "embla-carousel-autoplay";
 
 export function PortfolioSlider({
   portfolioCases,
 }: {
-  portfolioCases: PortifolioCase[];
+  portfolioCases: PortfolioCase[];
 }) {
   return (
     <div className="relative mt-10">
@@ -22,7 +22,7 @@ export function PortfolioSlider({
         opts={{ align: "start", loop: true }}
         plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
       >
-        <CarouselContent className="-ml-4 pb-6">
+        <CarouselContent className="-ml-4 items-stretch px-1 pb-6">
           {portfolioCases.map((caseItem) => (
             <CarouselItem
               key={caseItem.id}
