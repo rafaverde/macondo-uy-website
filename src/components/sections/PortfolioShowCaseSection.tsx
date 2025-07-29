@@ -32,8 +32,6 @@ export async function PortfolioShowCaseSection({
   const categoryTitle =
     finalPortfolioCases[0]?.portfolioCategories?.nodes[0].name;
 
-  console.log(finalPortfolioCases);
-
   return (
     <section
       id="trabajos"

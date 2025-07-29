@@ -56,7 +56,7 @@ export interface ProductsResponse {
 }
 
 // Portfolio
-export interface PortifolioCase {
+export interface PortfolioCase {
   id: string;
   title: string;
   slug: string;
@@ -78,5 +78,17 @@ export interface PortifolioCase {
         id: string;
       }[];
     };
+  };
+}
+
+export interface PageInfo {
+  hasNextPage: boolean;
+  endCursor: string;
+}
+
+export interface PaginatedPortfoliosResponse {
+  portfolios: {
+    nodes: PortfolioCase[];
+    pageInfo: PageInfo;
   };
 }
