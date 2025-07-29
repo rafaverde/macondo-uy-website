@@ -1,9 +1,9 @@
 import { PortfolioShowCaseSection } from "@/components/sections/PortfolioShowCaseSection";
 import { Button } from "@/components/ui/button";
-import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql/queries";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql";
 import { client } from "@/lib/apollo";
 import { WHATSAPP_LINK } from "@/lib/constants";
-import { Product } from "@/lib/types";
+import { Product } from "@/types";
 import { ArrowRight, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,7 +37,6 @@ export default async function ProductPage({
   if (!product) {
     return <div>Produto não encontrado.</div>;
   }
-  console.log(product);
 
   return (
     <>
@@ -114,7 +113,10 @@ export default async function ProductPage({
         </div>
       </section>
 
-      <PortfolioShowCaseSection productId={product.id} />
+      <PortfolioShowCaseSection
+        productId={product.id}
+        categoryTitle={product.title}
+      />
     </>
   );
 }

@@ -5,7 +5,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Product } from "@/lib/types";
+import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 

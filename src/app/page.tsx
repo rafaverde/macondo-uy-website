@@ -3,17 +3,17 @@ import { EquipoSection } from "@/components/sections/EquipoSection";
 import { ParaQuienSection } from "@/components/sections/ParaQuienSection";
 import { PortfolioShowCaseSection } from "@/components/sections/PortfolioShowCaseSection";
 import { ProductosSection } from "@/components/sections/ProductosSection";
-import { GET_ALL_PRODUCTS, GET_ALL_SLIDES } from "@/graphql/queries";
+import { GET_ALL_PRODUCTS, GET_ALL_SLIDES } from "@/graphql";
 import { client } from "@/lib/apollo";
-import { Product, SlideResponse } from "@/lib/types";
+import { Product, ProductsResponse, Slide, SlidesResponse } from "@/types";
 
 export default async function Home() {
   const [slidesData, productsData] = await Promise.all([
-    client.query({ query: GET_ALL_SLIDES }),
-    client.query({ query: GET_ALL_PRODUCTS }),
+    client.query<SlidesResponse>({ query: GET_ALL_SLIDES }),
+    client.query<ProductsResponse>({ query: GET_ALL_PRODUCTS }),
   ]);
 
-  const slides: SlideResponse[] = slidesData.data.slides.nodes;
+  const slides: Slide[] = slidesData.data.slides.nodes;
   const products: Product[] = productsData.data.products.nodes;
 
   return (

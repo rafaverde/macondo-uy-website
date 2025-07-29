@@ -1,4 +1,4 @@
-import { PortifolioCase } from "@/lib/types";
+import { PortfolioCase } from "@/types";
 import Link from "next/link";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import Image from "next/image";
 export function PortfolioCard({
   portfolioCase,
 }: {
-  portfolioCase: PortifolioCase;
+  portfolioCase: PortfolioCase;
 }) {
   const { title, slug, featuredImage, portfolioCategories } = portfolioCase;
   const category = portfolioCategories?.nodes[0];

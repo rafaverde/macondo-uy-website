@@ -14,10 +14,10 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SlideResponse } from "@/lib/types";
+import { Slide } from "@/types";
 import Autoplay from "embla-carousel-autoplay";
 
-export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
+export function HeroSlider({ slides }: { slides: Slide[] }) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);

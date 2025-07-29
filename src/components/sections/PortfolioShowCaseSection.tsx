@@ -1,6 +1,6 @@
-import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql/queries";
+import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql";
 import { client } from "@/lib/apollo";
-import { PortifolioCase } from "@/lib/types";
+import { PortfolioCase } from "@/types";
 import { PortfolioSlider } from "../PortfolioSlider";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -8,15 +8,17 @@ import { ArrowRight } from "lucide-react";
 
 export async function PortfolioShowCaseSection({
   productId,
+  categoryTitle,
 }: {
   productId?: string;
+  categoryTitle?: string;
 }) {
   const { data } = await client.query({
     query: GET_LATEST_PORTFOLIO_CASES,
   });
 
-  const allPortfolioCases: PortifolioCase[] = data.portfolios?.nodes || [];
-  let finalPortfolioCases: PortifolioCase[] = [];
+  const allPortfolioCases: PortfolioCase[] = data.portfolios?.nodes || [];
+  let finalPortfolioCases: PortfolioCase[] = [];
 
   if (productId) {
     finalPortfolioCases = allPortfolioCases.filter(
@@ -26,9 +28,6 @@ export async function PortfolioShowCaseSection({
   } else {
     finalPortfolioCases = allPortfolioCases.slice(0, 6);
   }
-
-  const categoryTitle =
-    finalPortfolioCases[0]?.portfolioCategories?.nodes[0].name;
 
   return (
     <section
