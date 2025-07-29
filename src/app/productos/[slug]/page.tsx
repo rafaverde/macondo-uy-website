@@ -38,8 +38,6 @@ export default async function ProductPage({
     return <div>Produto não encontrado.</div>;
   }
 
-  console.log(product);
-
   return (
     <>
       <section
