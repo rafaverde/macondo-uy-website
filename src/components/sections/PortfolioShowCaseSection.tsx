@@ -1,6 +1,6 @@
 import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql";
 import { client } from "@/lib/apollo";
-import { PortifolioCase } from "@/lib/types";
+import { PortfolioCase } from "@/lib/types";
 import { PortfolioSlider } from "../PortfolioSlider";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -17,8 +17,8 @@ export async function PortfolioShowCaseSection({
     query: GET_LATEST_PORTFOLIO_CASES,
   });
 
-  const allPortfolioCases: PortifolioCase[] = data.portfolios?.nodes || [];
-  let finalPortfolioCases: PortifolioCase[] = [];
+  const allPortfolioCases: PortfolioCase[] = data.portfolios?.nodes || [];
+  let finalPortfolioCases: PortfolioCase[] = [];
 
   if (productId) {
     finalPortfolioCases = allPortfolioCases.filter(
@@ -30,7 +30,7 @@ export async function PortfolioShowCaseSection({
   }
 
   const categoryTitle =
-    finalPortfolioCases[0]?.portfolioCategories?.nodes[0].name;
+    hasCategory && finalPortfolioCases[0]?.portfolioCategories?.nodes[0].name;
 
   return (
     <section
