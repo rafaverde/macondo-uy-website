@@ -1,6 +1,6 @@
 import { PortfolioShowCaseSection } from "@/components/sections/PortfolioShowCaseSection";
 import { Button } from "@/components/ui/button";
-import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql/queries";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql/oldqueries";
 import { client } from "@/lib/apollo";
 import { WHATSAPP_LINK } from "@/lib/constants";
 import { Product } from "@/lib/types";

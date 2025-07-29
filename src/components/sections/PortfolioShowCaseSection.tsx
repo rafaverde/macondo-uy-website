@@ -1,4 +1,4 @@
-import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql/queries";
+import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql";
 import { client } from "@/lib/apollo";
 import { PortifolioCase } from "@/lib/types";
 import { PortfolioSlider } from "../PortfolioSlider";
