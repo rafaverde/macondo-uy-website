@@ -2,11 +2,7 @@
 
 import { GET_PAGINATED_PORTFOLIOS } from "@/graphql";
 import { client } from "@/lib/apollo";
-import {
-  PageInfo,
-  PaginatedPortfoliosResponse,
-  PortfolioCase,
-} from "@/lib/types";
+import { PageInfo, PaginatedPortfoliosResponse, PortfolioCase } from "@/types";
 import { useState } from "react";
 import { PortfolioCard } from "./PortfolioCard";
 import { Button } from "./ui/button";

@@ -1,4 +1,4 @@
-import { Product } from "@/lib/types";
+import { Product } from "@/types";
 import { ProductoCard } from "../ProductoCard";
 
 export function ProductosSection({ products }: { products: Product[] }) {

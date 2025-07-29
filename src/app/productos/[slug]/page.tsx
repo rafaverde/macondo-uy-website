@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql";
 import { client } from "@/lib/apollo";
 import { WHATSAPP_LINK } from "@/lib/constants";
-import { Product } from "@/lib/types";
+import { Product } from "@/types";
 import { ArrowRight, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

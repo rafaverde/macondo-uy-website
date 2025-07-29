@@ -1,6 +1,6 @@
 import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql";
 import { client } from "@/lib/apollo";
-import { PortfolioCase } from "@/lib/types";
+import { PortfolioCase } from "@/types";
 import { PortfolioSlider } from "../PortfolioSlider";
 import { Button } from "../ui/button";
 import Link from "next/link";

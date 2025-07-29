@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { PortfolioCard } from "./PortfolioCard";
-import { PortfolioCase } from "@/lib/types";
+import { PortfolioCase } from "@/types";
 import Autoplay from "embla-carousel-autoplay";
 
 export function PortfolioSlider({

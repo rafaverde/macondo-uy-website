@@ -2,11 +2,7 @@ import { PortfolioGrid } from "@/components/PortfolioGrid";
 import { GET_PAGINATED_PORTFOLIOS } from "@/graphql";
 import { client } from "@/lib/apollo";
 import { JOBS_PER_PAGE } from "@/lib/constants";
-import {
-  PageInfo,
-  PaginatedPortfoliosResponse,
-  PortfolioCase,
-} from "@/lib/types";
+import { PageInfo, PaginatedPortfoliosResponse, PortfolioCase } from "@/types";
 
 export default async function PortfolioPage() {
   const { data } = await client.query<PaginatedPortfoliosResponse>({
