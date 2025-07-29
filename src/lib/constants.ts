@@ -80,3 +80,6 @@ export const SOCIAL_LINKS: SocialLinkProps[] = [
     iconName: "Whatsapp",
   },
 ];
+
+// Grid do portfolio
+export const JOBS_PER_PAGE = 6;

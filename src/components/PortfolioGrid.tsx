@@ -1,6 +1,5 @@
 "use client";
 
-import { JOBS_PER_PAGE } from "@/app/portfolio/page";
 import { GET_PAGINATED_PORTFOLIOS } from "@/graphql";
 import { client } from "@/lib/apollo";
 import {
@@ -11,6 +10,7 @@ import {
 import { useState } from "react";
 import { PortfolioCard } from "./PortfolioCard";
 import { Button } from "./ui/button";
+import { JOBS_PER_PAGE } from "@/lib/constants";
 
 interface PortfolioGridProps {
   initialCases: PortfolioCase[];
