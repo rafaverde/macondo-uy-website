@@ -1,6 +1,6 @@
 import { PortfolioShowCaseSection } from "@/components/sections/PortfolioShowCaseSection";
 import { Button } from "@/components/ui/button";
-import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql/oldqueries";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql";
 import { client } from "@/lib/apollo";
 import { WHATSAPP_LINK } from "@/lib/constants";
 import { Product } from "@/lib/types";
@@ -114,7 +114,7 @@ export default async function ProductPage({
         </div>
       </section>
 
-      <PortfolioShowCaseSection productId={product.id} />
+      <PortfolioShowCaseSection productId={product.id} hasCategory />
     </>
   );
 }

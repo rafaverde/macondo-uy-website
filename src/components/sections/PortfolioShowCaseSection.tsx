@@ -8,8 +8,10 @@ import { ArrowRight } from "lucide-react";
 
 export async function PortfolioShowCaseSection({
   productId,
+  hasCategory = false,
 }: {
   productId?: string;
+  hasCategory?: boolean;
 }) {
   const { data } = await client.query({
     query: GET_LATEST_PORTFOLIO_CASES,
@@ -30,6 +32,8 @@ export async function PortfolioShowCaseSection({
   const categoryTitle =
     finalPortfolioCases[0]?.portfolioCategories?.nodes[0].name;
 
+  console.log(finalPortfolioCases);
+
   return (
     <section
       id="trabajos"
@@ -43,7 +47,7 @@ export async function PortfolioShowCaseSection({
         ) : (
           <>
             <h2 className="text-primary mx-auto text-center text-2xl font-bold md:max-w-1/2 md:text-4xl">
-              {categoryTitle
+              {hasCategory
                 ? `Conozca nuestro trabajo de ${categoryTitle}`
                 : "Portfolio y cases"}
             </h2>
