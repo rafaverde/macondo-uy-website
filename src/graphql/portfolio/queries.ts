@@ -86,19 +86,18 @@ export const GET_PORTFOLIO_BY_SLUG = gql`
         projectImages {
           nodes {
             ... on MediaItem {
+              sourceUrl
               altText
               mediaDetails {
                 width
                 height
               }
-              sourceUrl
             }
           }
         }
         projectVideos {
           nodes {
             ... on VideoEmbed {
-              id
               videoEmbedFg {
                 videoEmbedUrl
               }
@@ -108,7 +107,6 @@ export const GET_PORTFOLIO_BY_SLUG = gql`
         projectAudios {
           nodes {
             ... on AudioEmbed {
-              id
               audioEmbedFg {
                 audioEmbedUrl
               }
