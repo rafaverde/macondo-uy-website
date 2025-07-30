@@ -1,6 +1,8 @@
+import { PortfolioGallery } from "@/components/PortfolioGallery";
 import { GET_PAGINATED_PORTFOLIOS, GET_PORTFOLIO_BY_SLUG } from "@/graphql";
 import { client } from "@/lib/apollo";
 import { PortfolioCase } from "@/types";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -35,7 +37,7 @@ export default async function PortfolioCasePage({
   }
 
   const category = portfolioCase.portfolioCategories?.nodes[0]?.name;
-  const galleryImages = portfolioCase.portfolioFg.projectImages?.nodes;
+  const imagesGallery = portfolioCase.portfolioFg.projectImages?.nodes;
   const videos = portfolioCase.portfolioFg.projectVideos?.nodes;
   const audios = portfolioCase.portfolioFg.projectAudios?.nodes;
 
@@ -44,7 +46,7 @@ export default async function PortfolioCasePage({
       id="portfolio"
       className="bg-background w-full scroll-mt-[50px] py-10"
     >
-      <div className="container mx-auto grid grid-cols-1 p-4 md:grid-cols-2">
+      <div className="container mx-auto grid grid-cols-1 gap-8 p-4 md:grid-cols-2">
         <div className="flex flex-col gap-4">
           <div className="space-y-3">
             <span className="text-xs uppercase">Cliente//</span>
@@ -59,8 +61,30 @@ export default async function PortfolioCasePage({
               <p className="text-2xl font-medium md:text-2xl">{category}</p>
             </div>
           )}
+
+          {portfolioCase.content && (
+            <div className="space-y-3">
+              <span className="text-xs uppercase">Descripción//</span>
+              <div
+                className="cms-content"
+                dangerouslySetInnerHTML={{ __html: portfolioCase.content }}
+              ></div>
+            </div>
+          )}
+        </div>
+
+        <div>
+          <Image
+            src={portfolioCase.featuredImage.node.sourceUrl}
+            alt={portfolioCase.featuredImage.node.altText}
+            width={700}
+            height={700}
+            className="border-border rounded-2xl border"
+          />
         </div>
       </div>
+
+      {imagesGallery && <PortfolioGallery images={imagesGallery} />}
     </section>
   );
 }
