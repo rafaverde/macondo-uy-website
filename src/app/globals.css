@@ -139,4 +139,9 @@
   .cms-content ul > li::marker {
     @apply text-primary text-2xl;
   }
+
+  /* Portfolio Media Items */
+  .cms-embed-container iframe {
+    @apply h-full w-full;
+  }
 }

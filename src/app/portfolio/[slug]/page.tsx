@@ -1,4 +1,5 @@
 import { PortfolioGallery } from "@/components/PortfolioGallery";
+import { PortfolioMedias } from "@/components/PortfolioMedias";
 import { GET_PAGINATED_PORTFOLIOS, GET_PORTFOLIO_BY_SLUG } from "@/graphql";
 import { client } from "@/lib/apollo";
 import { PortfolioCase } from "@/types";
@@ -40,6 +41,8 @@ export default async function PortfolioCasePage({
   const imagesGallery = portfolioCase.portfolioFg.projectImages?.nodes;
   const videos = portfolioCase.portfolioFg.projectVideos?.nodes;
   const audios = portfolioCase.portfolioFg.projectAudios?.nodes;
+
+  console.log(portfolioCase);
 
   return (
     <section
@@ -85,6 +88,8 @@ export default async function PortfolioCasePage({
       </div>
 
       {imagesGallery && <PortfolioGallery images={imagesGallery} />}
+
+      {videos && audios && <PortfolioMedias videos={videos} audios={audios} />}
     </section>
   );
 }

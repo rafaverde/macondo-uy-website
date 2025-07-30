@@ -30,15 +30,15 @@ export interface PortfolioCase {
       nodes: {
         videoEmbedFg: {
           videoEmbedUrl: string;
-        }[];
-      };
+        };
+      }[];
     };
     projectAudios?: {
       nodes: {
         audioEmbedFg: {
           audioEmbedUrl: string;
-        }[];
-      };
+        };
+      }[];
     };
   };
 }
