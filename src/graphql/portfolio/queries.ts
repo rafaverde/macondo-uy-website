@@ -62,3 +62,60 @@ export const GET_PAGINATED_PORTFOLIOS = gql`
     }
   }
 `;
+
+export const GET_PORTFOLIO_BY_SLUG = gql`
+  query GetPortfolioBySlug($slug: ID!) {
+    portfolio(id: $slug, idType: SLUG) {
+      title
+      content
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+      portfolioCategories {
+        nodes {
+          name
+          slug
+        }
+      }
+      portfolioFg {
+        clientName
+        jobTitle
+        projectImages {
+          nodes {
+            ... on MediaItem {
+              altText
+              mediaDetails {
+                width
+                height
+              }
+              sourceUrl
+            }
+          }
+        }
+        projectVideos {
+          nodes {
+            ... on VideoEmbed {
+              id
+              videoEmbedFg {
+                videoEmbedUrl
+              }
+            }
+          }
+        }
+        projectAudios {
+          nodes {
+            ... on AudioEmbed {
+              id
+              audioEmbedFg {
+                audioEmbedUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
