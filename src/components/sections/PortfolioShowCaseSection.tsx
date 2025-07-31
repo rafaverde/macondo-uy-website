@@ -23,7 +23,7 @@ export async function PortfolioShowCaseSection({
   if (productId) {
     finalPortfolioCases = allPortfolioCases.filter(
       (portfolio) =>
-        portfolio.portfolioFg.relatedProduct.nodes[0].id === productId,
+        portfolio.portfolioFg.relatedProduct?.nodes[0].id === productId,
     );
   } else {
     finalPortfolioCases = allPortfolioCases.slice(0, 6);

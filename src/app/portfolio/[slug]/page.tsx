@@ -49,6 +49,7 @@ export default async function PortfolioCasePage({
   params: { slug: string };
 }) {
   const { slug } = params;
+  console.log(slug);
 
   const { data } = await client.query({
     query: GET_PORTFOLIO_BY_SLUG,
@@ -65,8 +66,6 @@ export default async function PortfolioCasePage({
   const imagesGallery = portfolioCase.portfolioFg.projectImages?.nodes;
   const videos = portfolioCase.portfolioFg.projectVideos?.nodes;
   const audios = portfolioCase.portfolioFg.projectAudios?.nodes;
-
-  console.log(portfolioCase);
 
   return (
     <section
