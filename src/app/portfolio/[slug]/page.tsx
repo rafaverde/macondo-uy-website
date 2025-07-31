@@ -7,18 +7,40 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const { data } = await client.query({
-    query: GET_PAGINATED_PORTFOLIOS,
-    variables: { first: 50 },
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_PAGINATED_PORTFOLIOS,
+      variables: { first: 100 },
+    });
 
-  const cases: PortfolioCase[] = data.portfolios.nodes;
+    const cases: PortfolioCase[] = data?.portfolios?.nodes || [];
 
-  return cases
-    .filter((caseItem) => caseItem && caseItem.slug)
-    .map((caseItem) => ({
-      slug: caseItem.slug,
-    }));
+    if (!cases || cases.length === 0) {
+      console.log(
+        "Nenhum portfolio case encontrado para gerar páginas estáticas.",
+      );
+      return [];
+    }
+
+    const validSlugs = cases
+      .filter(
+        (caseItem) =>
+          caseItem &&
+          typeof caseItem.slug === "string" &&
+          caseItem.slug.length > 0,
+      )
+      .map((caseItem) => ({
+        slug: caseItem.slug,
+      }));
+
+    return validSlugs;
+  } catch (error) {
+    console.error(
+      "Erro ao buscar slugs para generateStaticParams (Portfolio):",
+      error,
+    );
+    return [];
+  }
 }
 
 export default async function PortfolioCasePage({
