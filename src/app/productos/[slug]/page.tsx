@@ -15,9 +15,11 @@ export async function generateStaticParams() {
 
   const products: Product[] = data.products.nodes;
 
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
+  return products
+    .filter((product) => product && product.slug)
+    .map((product) => ({
+      slug: product.slug,
+    }));
 }
 
 export default async function ProductPage({
