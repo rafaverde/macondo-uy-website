@@ -14,9 +14,11 @@ export async function generateStaticParams() {
 
   const cases: PortfolioCase[] = data.portfolios.nodes;
 
-  return cases.map((caseItem) => ({
-    slug: caseItem.slug,
-  }));
+  return cases
+    .filter((caseItem) => caseItem && caseItem.slug)
+    .map((caseItem) => ({
+      slug: caseItem.slug,
+    }));
 }
 
 export default async function PortfolioCasePage({
