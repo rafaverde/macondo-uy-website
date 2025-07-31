@@ -9,6 +9,12 @@ const nextConfig = {
         port: "8890",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "macondopropaganda.com",
+        port: "",
+        pathname: "/clientes/macondouy/wp-content/uploads/**",
+      },
     ],
   },
 };
