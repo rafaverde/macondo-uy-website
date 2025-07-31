@@ -27,7 +27,7 @@ export default async function ProductPage({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const { data } = await client.query({
     query: GET_PRODUCT_BY_SLUG,

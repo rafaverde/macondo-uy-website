@@ -48,7 +48,7 @@ export default async function PortfolioCasePage({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const { data } = await client.query({
     query: GET_PORTFOLIO_BY_SLUG,
