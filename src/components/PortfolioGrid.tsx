@@ -37,9 +37,9 @@ export function PortfolioGrid({ initialCases, pageInfo }: PortfolioGridProps) {
 
   return (
     <>
-      <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {cases.map((caseItem) => (
-          <PortfolioCard key={caseItem.id} portfolioCase={caseItem} />
+          <PortfolioCard key={caseItem.id} portfolioCase={caseItem} isGrid />
         ))}
       </div>
 
