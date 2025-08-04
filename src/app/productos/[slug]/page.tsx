@@ -7,19 +7,25 @@ import { Product } from "@/types";
 import { ArrowRight, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const { data } = await client.query({
-    query: GET_ALL_PRODUCTS,
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_ALL_PRODUCTS,
+    });
 
-  const products: Product[] = data.products.nodes;
+    const products: Product[] = data.products.nodes;
 
-  return products
-    .filter((product) => product && product.slug)
-    .map((product) => ({
-      slug: product.slug,
-    }));
+    return products
+      .filter((product) => product && product.slug)
+      .map((product) => ({
+        slug: product.slug,
+      }));
+  } catch (error) {
+    console.log("Erro ao buscar todos os produtos.", error);
+    notFound();
+  }
 }
 
 export default async function ProductPage({
@@ -28,16 +34,22 @@ export default async function ProductPage({
   params: { slug: string };
 }) {
   const { slug } = params;
+  let product: Product | null = null;
 
-  const { data } = await client.query({
-    query: GET_PRODUCT_BY_SLUG,
-    variables: { slug },
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_PRODUCT_BY_SLUG,
+      variables: { slug },
+    });
 
-  const product: Product = data.product;
+    product = data.product;
+  } catch (error) {
+    console.log("Erro ao buscar o produto.", error);
+    notFound();
+  }
 
   if (!product) {
-    return <div>Produto não encontrado.</div>;
+    notFound();
   }
 
   return (

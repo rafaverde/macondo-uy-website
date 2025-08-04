@@ -49,14 +49,19 @@ export default async function PortfolioCasePage({
   params: { slug: string };
 }) {
   const { slug } = params;
-  console.log(slug);
+  let portfolioCase: PortfolioCase | null = null;
 
-  const { data } = await client.query({
-    query: GET_PORTFOLIO_BY_SLUG,
-    variables: { slug },
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_PORTFOLIO_BY_SLUG,
+      variables: { slug },
+    });
 
-  const portfolioCase: PortfolioCase = data.portfolio;
+    portfolioCase = data.portfolio;
+  } catch (error) {
+    console.log("Erro ao carregar portfolio", error);
+    notFound();
+  }
 
   if (!portfolioCase) {
     return notFound();
