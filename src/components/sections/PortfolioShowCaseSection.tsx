@@ -13,20 +13,26 @@ export async function PortfolioShowCaseSection({
   productId?: string;
   categoryTitle?: string;
 }) {
-  const { data } = await client.query({
-    query: GET_LATEST_PORTFOLIO_CASES,
-  });
-
-  const allPortfolioCases: PortfolioCase[] = data.portfolios?.nodes || [];
+  let allPortfolioCases: PortfolioCase[] = [];
   let finalPortfolioCases: PortfolioCase[] = [];
 
-  if (productId) {
-    finalPortfolioCases = allPortfolioCases.filter(
-      (portfolio) =>
-        portfolio.portfolioFg.relatedProduct?.nodes[0].id === productId,
-    );
-  } else {
-    finalPortfolioCases = allPortfolioCases.slice(0, 6);
+  try {
+    const { data } = await client.query({
+      query: GET_LATEST_PORTFOLIO_CASES,
+    });
+
+    allPortfolioCases = data.portfolios?.nodes || [];
+
+    if (productId) {
+      finalPortfolioCases = allPortfolioCases.filter(
+        (portfolio) =>
+          portfolio.portfolioFg.relatedProduct?.nodes[0].id === productId,
+      );
+    } else {
+      finalPortfolioCases = allPortfolioCases.slice(0, 6);
+    }
+  } catch (error) {
+    console.log("Erro ao buscar dados para o Portfolio Show Case.", error);
   }
 
   return (
