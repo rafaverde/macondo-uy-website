@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "../components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingWhatsappButton } from "@/components/FloatingWhatsappButton";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     title: "Macondo Marketing e Comunicación",
     description:
       "Una gran agencia de marketing e comunicación para Una gran agencia de marketing y comunicaciones para empresas de cualquier tamaño.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.macondo.uy",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.macondo.com.uy",
     siteName: "Macondo Marketing & Comunicaciones",
     images: [
       {
@@ -67,6 +68,8 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <FloatingWhatsappButton />
+
+        <GoogleTagManager gtmId="GTM-KZ4HQG3Q" />
       </body>
     </html>
   );

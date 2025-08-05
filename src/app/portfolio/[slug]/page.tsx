@@ -79,7 +79,7 @@ export default async function PortfolioCasePage({
           {category && (
             <div className="space-y-3">
               <span className="text-xs uppercase">Job//</span>
-              <p className="text-2xl font-medium md:text-2xl">{category}</p>
+              <h2 className="text-2xl font-medium md:text-2xl">{category}</h2>
             </div>
           )}
 
