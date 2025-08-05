@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "../components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingWhatsappButton } from "@/components/FloatingWhatsappButton";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -67,6 +68,8 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <FloatingWhatsappButton />
+
+        <GoogleTagManager gtmId="GTM-KZ4HQG3Q" />
       </body>
     </html>
   );
