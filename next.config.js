@@ -11,9 +11,9 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "macondopropaganda.com",
+        hostname: "app.macondo.com.uy",
         port: "",
-        pathname: "/clientes/macondouy/wp-content/uploads/**",
+        pathname: "/wp-content/uploads/**",
       },
     ],
   },
