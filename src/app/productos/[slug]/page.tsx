@@ -2,10 +2,26 @@ import { PortfolioShowCaseSection } from "@/components/sections/PortfolioShowCas
 import { Button } from "@/components/ui/button";
 import { WHATSAPP_LINK } from "@/lib/constants";
 import { getAllProducts, getProductBySlug } from "@/lib/data";
+import { generateProductMetadata } from "@/lib/metadata";
+import { Product } from "@/types";
 import { ArrowRight, CircleQuestionMark } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+interface MetadataProps {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const product: Product | null = await getProductBySlug(params.slug);
+  return generateProductMetadata(product);
+}
 
 export async function generateStaticParams() {
   const products = await getAllProducts();

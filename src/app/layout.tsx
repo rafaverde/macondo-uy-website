@@ -19,6 +19,36 @@ export const metadata: Metadata = {
 
   description:
     "Una gran agencia de marketing e comunicación para Una gran agencia de marketing y comunicaciones para empresas de cualquier tamaño.",
+
+  keywords: [
+    "marketing",
+    "comunicación",
+    "marketing PYMES",
+    "comunicación PYMES",
+    "marketing digital",
+    "estrategia comercial",
+    "páginas web",
+    "configuración digital",
+    "identidad visual",
+    "campaña publicitarias",
+  ],
+
+  openGraph: {
+    title: "Macondo Marketing e Comunicación",
+    description:
+      "Una gran agencia de marketing e comunicación para Una gran agencia de marketing y comunicaciones para empresas de cualquier tamaño.",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.macondo.uy",
+    siteName: "Macondo Marketing & Comunicaciones",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "es_UY",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

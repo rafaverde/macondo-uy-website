@@ -4,8 +4,27 @@ import {
   getAllPortfolioSlugs,
   getPortfolioBySlug,
 } from "@/lib/data/portfolios";
+import { generatePortfolioMetadata } from "@/lib/metadata";
+import { PortfolioCase } from "@/types";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+
+interface MetadataProps {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const portfolioCase: PortfolioCase | null = await getPortfolioBySlug(
+    params.slug,
+  );
+
+  return generatePortfolioMetadata(portfolioCase);
+}
 
 export async function generateStaticParams() {
   const cases = await getAllPortfolioSlugs();
