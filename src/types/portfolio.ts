@@ -63,3 +63,7 @@ export interface PaginatedPortfoliosResponse {
     pageInfo: PageInfo;
   };
 }
+
+export interface SinglePortfolioResponse {
+  portfolio: PortfolioCase;
+}

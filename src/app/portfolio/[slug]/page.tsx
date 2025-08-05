@@ -1,46 +1,29 @@
 import { PortfolioGallery } from "@/components/PortfolioGallery";
 import { PortfolioMedias } from "@/components/PortfolioMedias";
-import { GET_PAGINATED_PORTFOLIOS, GET_PORTFOLIO_BY_SLUG } from "@/graphql";
-import { client } from "@/lib/apollo";
-import { PortfolioCase } from "@/types";
+import {
+  getAllPortfolioSlugs,
+  getPortfolioBySlug,
+} from "@/lib/data/portfolios";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  try {
-    const { data } = await client.query({
-      query: GET_PAGINATED_PORTFOLIOS,
-      variables: { first: 100 },
-    });
+  const cases = await getAllPortfolioSlugs();
 
-    const cases: PortfolioCase[] = data?.portfolios?.nodes || [];
-
-    if (!cases || cases.length === 0) {
-      console.log(
-        "Nenhum portfolio case encontrado para gerar páginas estáticas.",
-      );
-      return [];
-    }
-
-    const validSlugs = cases
-      .filter(
-        (caseItem) =>
-          caseItem &&
-          typeof caseItem.slug === "string" &&
-          caseItem.slug.length > 0,
-      )
-      .map((caseItem) => ({
-        slug: caseItem.slug,
-      }));
-
-    return validSlugs;
-  } catch (error) {
-    console.error(
-      "Erro ao buscar slugs para generateStaticParams (Portfolio):",
-      error,
-    );
+  if (!cases) {
     return [];
   }
+
+  return cases
+    .filter(
+      (caseItem) =>
+        caseItem &&
+        typeof caseItem.slug === "string" &&
+        caseItem.slug.length > 0,
+    )
+    .map((caseItem) => ({
+      slug: caseItem.slug,
+    }));
 }
 
 export default async function PortfolioCasePage({
@@ -49,19 +32,7 @@ export default async function PortfolioCasePage({
   params: { slug: string };
 }) {
   const { slug } = params;
-  let portfolioCase: PortfolioCase | null = null;
-
-  try {
-    const { data } = await client.query({
-      query: GET_PORTFOLIO_BY_SLUG,
-      variables: { slug },
-    });
-
-    portfolioCase = data.portfolio;
-  } catch (error) {
-    console.log("Erro ao carregar portfolio", error);
-    notFound();
-  }
+  const portfolioCase = await getPortfolioBySlug(slug);
 
   if (!portfolioCase) {
     return notFound();

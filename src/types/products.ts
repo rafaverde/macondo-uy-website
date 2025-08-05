@@ -34,3 +34,7 @@ export interface ProductsResponse {
     nodes: Product[];
   };
 }
+
+export interface SingleProductResponse {
+  product: Product;
+}

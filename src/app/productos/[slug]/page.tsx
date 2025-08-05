@@ -1,31 +1,24 @@
 import { PortfolioShowCaseSection } from "@/components/sections/PortfolioShowCaseSection";
 import { Button } from "@/components/ui/button";
-import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_SLUG } from "@/graphql";
-import { client } from "@/lib/apollo";
 import { WHATSAPP_LINK } from "@/lib/constants";
-import { Product } from "@/types";
+import { getAllProducts, getProductBySlug } from "@/lib/data";
 import { ArrowRight, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  try {
-    const { data } = await client.query({
-      query: GET_ALL_PRODUCTS,
-    });
+  const products = await getAllProducts();
 
-    const products: Product[] = data.products.nodes;
-
-    return products
-      .filter((product) => product && product.slug)
-      .map((product) => ({
-        slug: product.slug,
-      }));
-  } catch (error) {
-    console.log("Erro ao buscar todos os produtos.", error);
-    notFound();
+  if (!products) {
+    return [];
   }
+
+  return products
+    .filter((product) => product && product.slug)
+    .map((product) => ({
+      slug: product.slug,
+    }));
 }
 
 export default async function ProductPage({
@@ -34,19 +27,8 @@ export default async function ProductPage({
   params: { slug: string };
 }) {
   const { slug } = params;
-  let product: Product | null = null;
 
-  try {
-    const { data } = await client.query({
-      query: GET_PRODUCT_BY_SLUG,
-      variables: { slug },
-    });
-
-    product = data.product;
-  } catch (error) {
-    console.log("Erro ao buscar o produto.", error);
-    notFound();
-  }
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();

@@ -1,29 +1,9 @@
 import { PortfolioGrid } from "@/components/PortfolioGrid";
-import { GET_PAGINATED_PORTFOLIOS } from "@/graphql";
-import { client } from "@/lib/apollo";
-import { JOBS_PER_PAGE } from "@/lib/constants";
-import { PageInfo, PaginatedPortfoliosResponse, PortfolioCase } from "@/types";
-import { error } from "console";
+import { getAllPortfolios } from "@/lib/data/portfolios";
 import { CircleX } from "lucide-react";
 
 export default async function PortfolioPage() {
-  let initialCases: PortfolioCase[] = [];
-  let pageInfo: PageInfo = { hasNextPage: false, endCursor: "" };
-
-  try {
-    const { data } = await client.query<PaginatedPortfoliosResponse>({
-      query: GET_PAGINATED_PORTFOLIOS,
-      variables: {
-        first: JOBS_PER_PAGE,
-        after: null,
-      },
-    });
-
-    initialCases = data.portfolios.nodes;
-    pageInfo = data.portfolios.pageInfo;
-  } catch (error) {
-    console.log("Erro ao buscar dados do Portfolio", error);
-  }
+  const { initialCases, pageInfo } = await getAllPortfolios();
 
   return (
     <section
