@@ -1,6 +1,6 @@
-import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql/queries";
+import { GET_LATEST_PORTFOLIO_CASES } from "@/graphql";
 import { client } from "@/lib/apollo";
-import { PortifolioCase } from "@/lib/types";
+import { PortfolioCase } from "@/types";
 import { PortfolioSlider } from "../PortfolioSlider";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -8,27 +8,32 @@ import { ArrowRight } from "lucide-react";
 
 export async function PortfolioShowCaseSection({
   productId,
+  categoryTitle,
 }: {
   productId?: string;
+  categoryTitle?: string;
 }) {
-  const { data } = await client.query({
-    query: GET_LATEST_PORTFOLIO_CASES,
-  });
+  let allPortfolioCases: PortfolioCase[] = [];
+  let finalPortfolioCases: PortfolioCase[] = [];
 
-  const allPortfolioCases: PortifolioCase[] = data.portfolios?.nodes || [];
-  let finalPortfolioCases: PortifolioCase[] = [];
+  try {
+    const { data } = await client.query({
+      query: GET_LATEST_PORTFOLIO_CASES,
+    });
 
-  if (productId) {
-    finalPortfolioCases = allPortfolioCases.filter(
-      (portfolio) =>
-        portfolio.portfolioFg.relatedProduct.nodes[0].id === productId,
-    );
-  } else {
-    finalPortfolioCases = allPortfolioCases.slice(0, 6);
+    allPortfolioCases = data.portfolios?.nodes || [];
+
+    if (productId) {
+      finalPortfolioCases = allPortfolioCases.filter(
+        (portfolio) =>
+          portfolio.portfolioFg.relatedProduct?.nodes[0].id === productId,
+      );
+    } else {
+      finalPortfolioCases = allPortfolioCases.slice(0, 6);
+    }
+  } catch (error) {
+    console.log("Erro ao buscar dados para o Portfolio Show Case.", error);
   }
-
-  const categoryTitle =
-    finalPortfolioCases[0]?.portfolioCategories?.nodes[0].name;
 
   return (
     <section
@@ -45,12 +50,12 @@ export async function PortfolioShowCaseSection({
             <h2 className="text-primary mx-auto text-center text-2xl font-bold md:max-w-1/2 md:text-4xl">
               {categoryTitle
                 ? `Conozca nuestro trabajo de ${categoryTitle}`
-                : "Portfolio y cases"}
+                : "Nuestros trabajos"}
             </h2>
 
             <p className="text-foreground mx-auto mt-5 text-center md:max-w-2/3">
               {!categoryTitle
-                ? "Conocé algunos de los trabajos que desarrollamos para marcas reales con desafíos únicos. Desde estrategias digitales hasta identidades visuales completas: cada proyecto cuenta una historia, y en Macondo nos aseguramos de que sea inolvidable."
+                ? "Conocé algunos de los trabajos que desarrollamos para emprendimientos reales con desafíos únicos. Desde estrategias digitales hasta identidades visuales completas. Cada proyecto cuenta una historia y en Macondo nos aseguramos de que sea inolvidable."
                 : ""}
             </p>
             <PortfolioSlider portfolioCases={finalPortfolioCases} />

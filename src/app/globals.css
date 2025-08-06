@@ -46,7 +46,8 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.252 0 0);
+  --foreground-values: 0.252 0 0;
+  --foreground: oklch(var(--foreground-values));
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.252 0 0);
   --popover: oklch(1 0 0);
@@ -76,11 +77,13 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+  --yarl__color_backdrop: oklch(var(--foreground-values) / 0.97);
 }
 
 .dark {
   --background: oklch(0.252 0 0);
-  --foreground: oklch(0.985 0 0);
+  --foreground-values: 0.985 0 0;
+  --foreground: oklch(var(--foreground-values));
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
@@ -110,6 +113,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
+  --yarl__color_backdrop: oklch(var(--foreground-values) / 0.97);
 }
 
 @layer base {
@@ -134,5 +138,10 @@
 
   .cms-content ul > li::marker {
     @apply text-primary text-2xl;
+  }
+
+  /* Portfolio Media Items */
+  .cms-embed-container iframe {
+    @apply h-full w-full;
   }
 }

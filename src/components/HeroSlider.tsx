@@ -14,10 +14,10 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SlideResponse } from "@/lib/types";
+import { Slide } from "@/types";
 import Autoplay from "embla-carousel-autoplay";
 
-export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
+export function HeroSlider({ slides }: { slides: Slide[] }) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -87,8 +87,12 @@ export function HeroSlider({ slides }: { slides: SlideResponse[] }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="bg-background/20 hover:bg-primary/70 absolute left-10 hidden h-12 w-12 cursor-pointer border-none transition-all duration-300 md:flex" />
-        <CarouselNext className="bg-background/20 hover:bg-primary/70 absolute right-10 hidden h-12 w-12 cursor-pointer border-none transition-all duration-300 md:flex" />
+        {slides.length > 0 && (
+          <>
+            <CarouselPrevious className="bg-background/20 hover:bg-primary/70 absolute left-10 hidden h-12 w-12 cursor-pointer border-none transition-all duration-300 md:flex" />
+            <CarouselNext className="bg-background/20 hover:bg-primary/70 absolute right-10 hidden h-12 w-12 cursor-pointer border-none transition-all duration-300 md:flex" />
+          </>
+        )}
       </Carousel>
 
       <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 gap-2">

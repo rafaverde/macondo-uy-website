@@ -16,12 +16,12 @@ export function EquipoSection() {
         <div className="space-y-8">
           <div className="flex flex-col gap-4">
             <h2 className="text-primary text-2xl font-bold md:text-4xl">
-              Un negocio, un equipo
+              Un emprendimiento, un equipo
             </h2>
             <p>
               Creativos, redactores, diseñadores, programadores, estrategas de
-              marketing.  Un equipo multidisciplinario completo para cada
-              cliente.
+              marketing. Un equipo multidisciplinario completo para cada
+              emprendimiento.
             </p>
           </div>
 
