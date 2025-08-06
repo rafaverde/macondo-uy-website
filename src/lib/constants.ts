@@ -1,6 +1,6 @@
 // Links e contatos principais
 export const WHATSAPP_LINK = "https://bit.ly/macondouy";
-export const EMAIL_ADDRESS = "contacto@macondopropaganda.com.uy";
+export const EMAIL_ADDRESS = "contacto@macondo.com.uy";
 export const PHONE_NUMBER = "+59895006439";
 export const PHONE_LINK = `tel:${PHONE_NUMBER}`;
 

@@ -56,12 +56,11 @@ export function Footer() {
               alt="Macondo Marketing e Comunicación Logo"
             />
             <p className="text-sm">
-              Macondo Propaganda oferece servicios de Marketing Digital,
-              desarrollo de Páginas Web, Identidad Visual y Estratégia Comercial
-              para PYMES.
+              Macondo ofrece servicios de Marketing, desarrollo de páginas web,
+              identidad visual y estrategia comercial para PYMES.
             </p>
             <p className="mt-5 text-xs">
-              {new Date().getFullYear()} © Copyright Macondo Marketing e
+              {new Date().getFullYear()} © Copyright Macondo Marketing y
               Comunicación
             </p>
           </div>

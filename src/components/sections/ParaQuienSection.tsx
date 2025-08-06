@@ -15,19 +15,19 @@ const boxInfosData: BoxInfo[] = [
     iconName: "Store",
     title: "PYMES",
     description:
-      "Pequeños negocios de cualquier segmento de mercado que necesiten mejorar su marketing digital y potenciar su oferta en el mercado.",
+      "Pequeños emprendimientos de cualquier segmento de mercado que necesiten mejorar su marketing y comunicación para potenciar sus ventas.",
   },
   {
     iconName: "Lightbulb",
     title: "Emprendedores",
     description:
-      "Personas o equipos que tengan una idea de negocio lista para lanzar al mercado y necesiten una agencia de marketing digital para construir sus canales de comunicación digital y su estrategia comercial de lanzamiento.",
+      "Personas o equipos que tengan una idea de negocio lista para lanzar al mercado y necesiten una agencia de marketing para construir sus canales de comunicación digital y su estrategia comercial.",
   },
   {
     iconName: "Rocket",
     title: "Emprendimientos en crecimiento",
     description:
-      "Negocios que ya están vendiendo y que necesiten mejorar su marketing digital y potenciar sus ventas.",
+      "Negocios que ya están vendiendo y que necesiten mejorar su marketing y comunicación para potenciar sus ventas.",
   },
 ];
 

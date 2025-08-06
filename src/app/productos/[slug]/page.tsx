@@ -78,9 +78,21 @@ export default async function ProductPage({
               height={380}
             />
 
-            <div className="bg-primary shadow-primary flex w-fit items-start rounded-2xl px-7 py-5 text-2xl text-white shadow-md select-none md:text-3xl">
-              <span className="text-xl">$U</span>
-              <span className="font-medium">{product.productsFg.price}</span>
+            <div className="bg-primary shadow-primary flex w-fit flex-col items-center rounded-2xl px-7 py-5 text-2xl text-white shadow-md select-none md:text-3xl">
+              {product.productsFg.priceFrom === true && (
+                <p className="leading-base text-xs uppercase">A partir de</p>
+              )}
+              <div className="flex items-start">
+                {product.productsFg.price !== "Consulta" && (
+                  <span className="text-xl">$U</span>
+                )}
+                <span className="font-medium">{product.productsFg.price}</span>
+              </div>
+              {product.productsFg.fee > 1 && (
+                <p className="leading-base text-xs font-medium uppercase">
+                  (Hasta {product.productsFg.fee} cuotas)
+                </p>
+              )}
             </div>
 
             <Button asChild size="xl">
