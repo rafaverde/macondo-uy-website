@@ -48,23 +48,20 @@ export function Header() {
       className={`bg-background sticky top-0 z-50 ${isScrolled ? "h-[50px]" : "h-[70px]"} shadow transition-all duration-300`}
     >
       <div className="container mx-auto flex h-full items-center justify-between px-4">
-        {isScrolled ? (
-          <Link href="#top">
-            <Image
-              src={macondoIcon}
-              alt="Macondo Marketing & Comunicación Logo"
-              className={`w-auto transition-all duration-300 ${isScrolled ? "h-[30px] opacity-100" : "h-[0px] opacity-0"}`}
-            />
-          </Link>
-        ) : (
-          <Link href="/">
-            <Image
-              src={macondoLogo}
-              alt="Macondo Marketing & Comunicación Logo"
-              className={`w-auto transition-all duration-300 ${isScrolled ? "h-[0px] opacity-0" : "h-[70px] opacity-100"}`}
-            />
-          </Link>
-        )}
+        <Link href={isScrolled ? "#top" : "/"}>
+          <Image
+            src={isScrolled ? macondoIcon : macondoLogo}
+            alt="Macondo Marketing & Comunicación Logo"
+            height={isScrolled ? 30 : 70}
+            width={isScrolled ? 30 : 196}
+            style={{
+              height: isScrolled ? 30 : 70,
+              width: isScrolled ? 30 : 196,
+              transition: "height 0.3s ease-in-out",
+            }}
+          />
+        </Link>
+
         <div className="hidden md:flex">
           <NavigationMenu title="Menu de navegação">
             <NavigationMenuList>
