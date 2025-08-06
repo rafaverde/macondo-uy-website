@@ -82,7 +82,7 @@ export default async function ProductPage({
               {product.productsFg.priceFrom === true && (
                 <p className="leading-base text-xs uppercase">A partir de</p>
               )}
-              <div className="flex items-start">
+              <div className="flex items-start gap-1">
                 {product.productsFg.price !== "Consulta" && (
                   <span className="text-xl">$U</span>
                 )}
