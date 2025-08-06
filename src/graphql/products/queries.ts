@@ -40,7 +40,9 @@ export const GET_PRODUCT_BY_SLUG = gql`
       }
       productsFg {
         subtitle
+        priceFrom
         price
+        fee
         buttonText
         neededDescription
       }

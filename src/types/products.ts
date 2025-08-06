@@ -6,8 +6,11 @@ export interface Product {
   productsFg: {
     buttonText: string;
     neededDescription: string;
+    priceFrom: boolean;
     price: string;
+    fee: number;
     subtitle: string;
+
     frontIcon: {
       node: {
         altText: string;
