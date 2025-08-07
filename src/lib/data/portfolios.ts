@@ -19,6 +19,11 @@ export const getAllPortfolios = cache(async () => {
         first: JOBS_PER_PAGE,
         after: null,
       },
+      context: {
+        fetchOptions: {
+          next: { tags: ["portfolio"] },
+        },
+      },
     });
 
     const initialCases: PortfolioCase[] = data.portfolios.nodes;
@@ -39,6 +44,11 @@ export const getPortfolioBySlug = cache(async (slug: string) => {
     const { data } = await client.query<SinglePortfolioResponse>({
       query: GET_PORTFOLIO_BY_SLUG,
       variables: { slug },
+      context: {
+        fetchOptions: {
+          next: { tags: ["portfolio"] },
+        },
+      },
     });
 
     return data.portfolio;
@@ -53,6 +63,11 @@ export async function getAllPortfolioSlugs() {
     const { data } = await client.query<PaginatedPortfoliosResponse>({
       query: GET_PAGINATED_PORTFOLIOS,
       variables: { first: 100 },
+      context: {
+        fetchOptions: {
+          next: { tags: ["portfolio"] },
+        },
+      },
     });
 
     return data?.portfolios?.nodes || [];
