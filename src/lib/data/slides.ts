@@ -8,6 +8,11 @@ export const getAllSlides = cache(async () => {
   try {
     const { data } = await client.query<SlidesResponse>({
       query: GET_ALL_SLIDES,
+      context: {
+        fetchOptions: {
+          next: { tags: ["slides"] },
+        },
+      },
     });
 
     return data.slides.nodes;

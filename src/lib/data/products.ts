@@ -9,6 +9,11 @@ export const getAllProducts = cache(async () => {
   try {
     const { data } = await client.query<ProductsResponse>({
       query: GET_ALL_PRODUCTS,
+      context: {
+        fetchOptions: {
+          next: { tags: ["products"] },
+        },
+      },
     });
 
     return data.products.nodes;
@@ -23,6 +28,11 @@ export const getProductBySlug = cache(async (slug: string) => {
     const { data } = await client.query<SingleProductResponse>({
       query: GET_PRODUCT_BY_SLUG,
       variables: { slug },
+      context: {
+        fetchOptions: {
+          next: { tags: ["products"] },
+        },
+      },
     });
 
     return data.product;
