@@ -20,6 +20,7 @@ import { InstagramIcon } from "./icons/InstagramIcon";
 import { YoutubeIcon } from "./icons/YoutubeIcon";
 import { LinkedinIcon } from "./icons/LinkedinIcon";
 import { WhatsappIcon } from "./icons/WhatsappIcon";
+import { PinterestIcon } from "./icons/PinterestIcon";
 
 const iconMap: Record<IconName, ElementType> = {
   Facebook: FacebookIcon,
@@ -27,6 +28,7 @@ const iconMap: Record<IconName, ElementType> = {
   Youtube: YoutubeIcon,
   Linkedin: LinkedinIcon,
   Whatsapp: WhatsappIcon,
+  Pinterest: PinterestIcon,
 };
 
 export function Footer() {
