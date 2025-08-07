@@ -25,7 +25,8 @@ export type IconName =
   | "Instagram"
   | "Facebook"
   | "Youtube"
-  | "Linkedin";
+  | "Linkedin"
+  | "Pinterest";
 
 // CTAs Interface
 export interface NavCtaProps {
@@ -55,24 +56,29 @@ export interface SocialLinkProps {
 // Links Redes Sociais
 export const SOCIAL_LINKS: SocialLinkProps[] = [
   {
-    href: "https://www.instagram.com/macondopropaganda",
+    href: "https://instagram.com/macondouy",
     title: "Instagram",
     iconName: "Instagram",
   },
   {
-    href: "https://www.facebook.com/macondopropaganda",
+    href: "https://www.facebook.com/macondouy",
     title: "Facebook",
     iconName: "Facebook",
   },
   {
-    href: "https://www.youtube.com/@macondopropaganda",
+    href: "https://www.youtube.com/@MacondoUY",
     title: "Youtube",
     iconName: "Youtube",
   },
   {
-    href: "https://www.linkedin.com/company/macondopropaganda/",
+    href: "https://www.linkedin.com/company/macondouy",
     title: "Linkedin",
     iconName: "Linkedin",
+  },
+  {
+    href: "https://pinterest.com/macondouy",
+    title: "Pinterest",
+    iconName: "Pinterest",
   },
   {
     href: WHATSAPP_LINK,
