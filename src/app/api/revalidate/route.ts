@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -21,6 +21,12 @@ export async function POST(request: NextRequest) {
   }
 
   revalidateTag(tag);
+
+  revalidatePath("/");
+
+  if (tag === "portfolio") {
+    revalidatePath("/portfolio");
+  }
 
   return NextResponse.json({ revalidated: true, now: Date.now() });
 }
