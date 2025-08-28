@@ -107,7 +107,9 @@ export default async function PortfolioCasePage({
 
       {imagesGallery && <PortfolioGallery images={imagesGallery} />}
 
-      {videos && audios && <PortfolioMedias videos={videos} audios={audios} />}
+      {(videos || audios) && (
+        <PortfolioMedias videos={videos} audios={audios} />
+      )}
     </section>
   );
 }

@@ -16,7 +16,7 @@ interface PortfolioMediasProps {
 }
 
 export function PortfolioMedias({ videos, audios }: PortfolioMediasProps) {
-  if (!videos?.length || !audios?.length) {
+  if (!videos?.length && !audios?.length) {
     return null;
   }
 
