@@ -9,7 +9,6 @@ import { cache } from "react";
 import { client } from "../apollo";
 import { GET_PAGINATED_PORTFOLIOS, GET_PORTFOLIO_BY_SLUG } from "@/graphql";
 import { JOBS_PER_PAGE } from "../constants";
-import { notFound } from "next/navigation";
 
 export const getAllPortfolios = cache(async () => {
   try {
@@ -31,11 +30,8 @@ export const getAllPortfolios = cache(async () => {
 
     return { initialCases, pageInfo };
   } catch (error) {
-    console.log("Erro ao buscar dados do Portfolio", error);
-    const initialCases: PortfolioCase[] = [];
-    const pageInfo: PageInfo = { hasNextPage: false, endCursor: "" };
-
-    return { initialCases, pageInfo };
+    console.error("Erro ao buscar dados do Portfolio", error);
+    throw new Error("Não foi possível carregar os dados do portfólio.");
   }
 });
 
@@ -53,8 +49,8 @@ export const getPortfolioBySlug = cache(async (slug: string) => {
 
     return data.portfolio;
   } catch (error) {
-    console.log("Erro ao carregar portfolio por slug:", error);
-    return notFound();
+    console.error("Erro ao carregar portfolio por slug:", error);
+    throw new Error("Não foi possível carregar dados deste case.");
   }
 });
 
@@ -76,6 +72,8 @@ export async function getAllPortfolioSlugs() {
       "Erro ao buscar slugs para generateStaticParams (Portfolio):",
       error,
     );
-    return [];
+    throw new Error(
+      "Não foi possível buscar os slugs do portfolio para o build.",
+    );
   }
 }

@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { FloatingWhatsappButton } from "@/components/FloatingWhatsappButton";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { CookieConsent } from "@/components/CookieConsent";
+import * as Sentry from "@sentry/nextjs";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -50,6 +51,9 @@ export const metadata: Metadata = {
     ],
     locale: "es_UY",
     type: "website",
+  },
+  other: {
+    ...Sentry.getTraceData(),
   },
 };
 
