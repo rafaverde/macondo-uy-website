@@ -5,7 +5,6 @@ import { Header } from "../components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingWhatsappButton } from "@/components/FloatingWhatsappButton";
 import { GoogleTagManager } from "@next/third-parties/google";
-import { CookieConsent } from "@/components/CookieConsent";
 import * as Sentry from "@sentry/nextjs";
 
 const onest = Onest({
@@ -75,7 +74,6 @@ export default function RootLayout({
         <FloatingWhatsappButton />
 
         <GoogleTagManager gtmId="GTM-KZ4HQG3Q" />
-        <CookieConsent />
       </body>
     </html>
   );
