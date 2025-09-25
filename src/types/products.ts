@@ -10,6 +10,7 @@ export interface Product {
     price: string;
     fee: number;
     subtitle: string;
+    cta: string | null;
 
     frontIcon: {
       node: {

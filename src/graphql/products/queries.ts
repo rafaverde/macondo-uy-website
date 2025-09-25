@@ -13,6 +13,7 @@ export const GET_ALL_PRODUCTS = gql`
           neededDescription
           price
           subtitle
+          cta
           frontIcon {
             node {
               altText
@@ -45,6 +46,7 @@ export const GET_PRODUCT_BY_SLUG = gql`
         fee
         buttonText
         neededDescription
+        cta
       }
     }
   }

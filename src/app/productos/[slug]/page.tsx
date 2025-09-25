@@ -97,7 +97,11 @@ export default async function ProductPage({
 
             <Button asChild size="xl">
               <Link
-                href={WHATSAPP_LINK}
+                href={
+                  product.productsFg.cta
+                    ? product.productsFg.cta
+                    : WHATSAPP_LINK
+                }
                 target="_blank"
                 aria-label="Contáctanos vía WhatsApp"
               >
