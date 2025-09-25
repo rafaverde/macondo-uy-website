@@ -131,7 +131,9 @@ export default async function ProductPage({
             className="border-primary hover:border-border border hover:border"
           >
             <Link
-              href={WHATSAPP_LINK}
+              href={
+                product.productsFg.cta ? product.productsFg.cta : WHATSAPP_LINK
+              }
               target="_blank"
               aria-label="Contáctanos vía WhatsApp"
             >
