@@ -1,19 +1,45 @@
 "use client";
 import { TestimonialsResponse } from "@/types";
 import { User, Star } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 import { Card, CardContent } from "./ui/card";
 import Autoplay from "embla-carousel-autoplay";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
     <Card className="mb-4">
-      <CardContent>
+      <CardContent className="relative">
         <Carousel
+          setApi={setApi}
           opts={{ loop: true }}
-          // plugins={[Autoplay({ delay: 6000, stopOnInteraction: false })]}
+          plugins={[Autoplay({ delay: 7000, stopOnInteraction: false })]}
           className="mx-auto w-full max-w-4xl"
         >
           <CarouselContent>
@@ -22,7 +48,7 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
                 key={testimonial.title + index}
                 className="flex flex-col items-center justify-center p-8"
               >
-                <div className="flex flex-col-reverse gap-8 md:flex-row">
+                <div className="flex flex-col-reverse gap-4 md:flex-row md:gap-8">
                   <div className="order-1 min-h-[100px] min-w-[100px] md:order-none">
                     {testimonial.featuredImage?.node ? (
                       <Image
@@ -33,7 +59,7 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
                         className="rounded-full"
                       />
                     ) : (
-                      <div className="bg-foreground flex h-[100px] w-[100px] items-center justify-center rounded-full">
+                      <div className="bg-foreground/20 flex h-[100px] w-[100px] items-center justify-center rounded-full">
                         <User className="h-12 w-12 text-white" />
                       </div>
                     )}
@@ -74,7 +100,24 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
               </CarouselItem>
             ))}
           </CarouselContent>
+          {testimonios.nodes.length > 0 && (
+            <>
+              <CarouselPrevious className="bg-foreground/50 hidden cursor-pointer border-none text-white md:flex" />
+              <CarouselNext className="bg-foreground/50 hidden cursor-pointer border-none text-white md:flex" />
+            </>
+          )}
         </Carousel>
+
+        <div className="absolute left-1/2 z-20 flex -translate-x-1/2 gap-2">
+          {testimonios.nodes.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api?.scrollTo(index)}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${index === current - 1 ? "bg-foreground w-4" : "bg-foreground/50"}`}
+              aria-label={`Ir para o slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
       </CardContent>
     </Card>
   );
