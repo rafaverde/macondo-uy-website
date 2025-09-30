@@ -1,7 +1,7 @@
 export interface Testimonial {
   title: string; // Author's name
   content: string; // Testimonial content
-  featuredImage: {
+  featuredImage?: {
     // Avatar
     node: {
       sourceUrl: string;
@@ -9,10 +9,10 @@ export interface Testimonial {
     };
   };
   testimoniosFg: {
-    author_role: string;
+    author_role?: string;
     rating: number;
-    company: string;
-    companyLink: string;
+    company?: string;
+    companyLink?: string;
   };
 }
 
