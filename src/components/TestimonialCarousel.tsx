@@ -94,7 +94,9 @@ export function TestimonialCarousel({
                     <h3 className="text-sm leading-tight font-bold text-red-500">
                       {testimonial.title}{" "}
                       <span className="text-foreground font-normal">
-                        {`- ${testimonial.testimoniosFg.author_role}`}
+                        {testimonial.testimoniosFg.author_role
+                          ? `- ${testimonial.testimoniosFg.author_role}`
+                          : ""}
                       </span>
                     </h3>
                     <p className="text-sm text-zinc-500">
