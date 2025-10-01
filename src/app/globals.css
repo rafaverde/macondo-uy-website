@@ -123,6 +123,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  a:hover {
+    @apply text-red-500;
+  }
 
   /* WP HTML style blocks */
 
