@@ -40,7 +40,7 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
           setApi={setApi}
           opts={{ loop: true }}
           plugins={[Autoplay({ delay: 7000, stopOnInteraction: false })]}
-          className="mx-auto w-full max-w-4xl"
+          className="mx-auto w-full max-w-[80%]"
         >
           <CarouselContent>
             {testimonios.nodes.map((testimonial, index) => (
