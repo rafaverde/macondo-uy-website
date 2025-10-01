@@ -1,5 +1,6 @@
 "use client";
-import { TestimonialsResponse } from "@/types";
+
+import { Testimonial } from "@/types";
 import { User, Star } from "lucide-react";
 import {
   Carousel,
@@ -15,7 +16,11 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
+export function TestimonialCarousel({
+  testimonios,
+}: {
+  testimonios: Testimonial[];
+}) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -43,7 +48,7 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
           className="mx-auto w-full max-w-[80%]"
         >
           <CarouselContent>
-            {testimonios.nodes.map((testimonial, index) => (
+            {testimonios.map((testimonial, index) => (
               <CarouselItem
                 key={testimonial.title + index}
                 className="flex flex-col items-center justify-center p-8"
@@ -89,7 +94,7 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
                     <h3 className="text-sm leading-tight font-bold text-red-500">
                       {testimonial.title}{" "}
                       <span className="text-foreground font-normal">
-                        - {testimonial.testimoniosFg.author_role}
+                        {`- ${testimonial.testimoniosFg.author_role}`}
                       </span>
                     </h3>
                     <p className="text-sm text-zinc-500">
@@ -100,7 +105,7 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {testimonios.nodes.length > 0 && (
+          {testimonios.length > 0 && (
             <>
               <CarouselPrevious className="bg-foreground/50 hidden cursor-pointer border-none text-white md:flex" />
               <CarouselNext className="bg-foreground/50 hidden cursor-pointer border-none text-white md:flex" />
@@ -109,7 +114,7 @@ export function TestimonialCarousel({ testimonios }: TestimonialsResponse) {
         </Carousel>
 
         <div className="absolute left-1/2 z-20 flex -translate-x-1/2 gap-2">
-          {testimonios.nodes.map((_, index) => (
+          {testimonios.map((_, index) => (
             <button
               key={index}
               onClick={() => api?.scrollTo(index)}

@@ -46,7 +46,7 @@ export function PortfolioGrid({ initialCases, pageInfo }: PortfolioGridProps) {
       {currentPageInfo.hasNextPage && (
         <div className="mt-12 text-center">
           <Button size="xl" disabled={isLoading} onClick={handleLoadMore}>
-            {isLoading ? "Cargando..." : "Cargar más trabajos"}
+            {isLoading ? "Cargando..." : "Más trabajos"}
           </Button>
         </div>
       )}
