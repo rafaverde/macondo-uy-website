@@ -2,6 +2,8 @@
 
 import { Testimonial } from "@/types";
 import { User, Star } from "lucide-react";
+import GMNLogo from "@/assets/google-my-business-logo.svg";
+
 import {
   Carousel,
   CarouselApi,
@@ -11,10 +13,11 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { Card, CardContent } from "./ui/card";
-import Autoplay from "embla-carousel-autoplay";
 
+import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export function TestimonialCarousel({
   testimonios,
@@ -61,7 +64,7 @@ export function TestimonialCarousel({
                         alt={testimonial.featuredImage.node.altText}
                         width={100}
                         height={100}
-                        className="rounded-full"
+                        className="border-foreground/20 rounded-full border"
                       />
                     ) : (
                       <div className="bg-foreground/20 flex h-[100px] w-[100px] items-center justify-center rounded-full">
@@ -99,9 +102,16 @@ export function TestimonialCarousel({
                           : ""}
                       </span>
                     </h3>
-                    <p className="text-sm text-zinc-500">
-                      {testimonial.testimoniosFg.company}
-                    </p>
+                    {testimonial.testimoniosFg.company && (
+                      <p className="text-sm text-zinc-500">
+                        <Link
+                          href={testimonial.testimoniosFg.companyLink || ""}
+                          target="_blank"
+                        >
+                          {testimonial.testimoniosFg.company}
+                        </Link>
+                      </p>
+                    )}
                   </div>
                 </div>
               </CarouselItem>
@@ -124,6 +134,16 @@ export function TestimonialCarousel({
               aria-label={`Ir para o slide ${index + 1}`}
             ></button>
           ))}
+        </div>
+
+        <div>
+          <Link href="https://share.google/qN2GIQEzOSX3muhOc" target="_blank">
+            <Image
+              src={GMNLogo}
+              className="absolute top-0.5 right-6 h-auto w-6"
+              alt="Ícone do Google Meu Negócio"
+            />
+          </Link>
         </div>
       </CardContent>
     </Card>
