@@ -18,7 +18,7 @@ export async function TestimoniosSection() {
           Lo que dicen nuestros clientes
         </h2>
 
-        <TestimonialCarousel testimonios={{ nodes: testimonials }} />
+        <TestimonialCarousel testimonios={testimonials} />
       </div>
     </section>
   );

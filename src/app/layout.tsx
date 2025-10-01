@@ -15,12 +15,12 @@ const onest = Onest({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Macondo Marketing e Comunicación",
-    default: "Macondo Marketing e Comunicación",
+    template: "%s | Macondo Marketing y Comunicación",
+    default: "Macondo Marketing y Comunicación",
   },
 
   description:
-    "Una gran agencia de marketing e comunicación para Una gran agencia de marketing y comunicaciones para empresas de cualquier tamaño.",
+    "Una gran agencia de marketing y comunicación para empresas de cualquier tamaño.",
 
   keywords: [
     "marketing",
