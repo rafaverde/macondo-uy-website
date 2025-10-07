@@ -55,7 +55,7 @@ export function Footer() {
           <div className="text-background order-3 md:order-0">
             <Image
               src={macondoLogo}
-              alt="Macondo Marketing e Comunicación Logo"
+              alt="Macondo Marketing y Comunicación Logo"
             />
             <p className="text-sm">
               Macondo ofrece servicios de Marketing, desarrollo de páginas web,
