@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "Macondo Marketing e Comunicación",
+    title: "Macondo Marketing y Comunicación",
     description:
-      "Una gran agencia de marketing e comunicación para Una gran agencia de marketing y comunicaciones para empresas de cualquier tamaño.",
+      "Una gran agencia de marketing y comunicación para Una gran agencia de marketing y comunicaciones para empresas de cualquier tamaño.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.macondo.com.uy",
     siteName: "Macondo Marketing & Comunicaciones",
     images: [
