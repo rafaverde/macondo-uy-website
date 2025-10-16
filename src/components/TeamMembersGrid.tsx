@@ -57,6 +57,7 @@ export function TeamMembersGrid({
       photos={photos}
       layout="rows"
       targetRowHeight={100}
+      rowConstraints={{ maxPhotos: 5 }}
       spacing={10}
       render={{ photo: CustomRenderPhoto }}
     />
