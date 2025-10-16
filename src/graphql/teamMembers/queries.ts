@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_ALL_TEAM_MEMBERS = gql`
   query teamMembers {
-    teamMembers {
+    teamMembers(first: 20) {
       nodes {
         title
         featuredImage {
