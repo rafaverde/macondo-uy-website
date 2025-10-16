@@ -4,8 +4,14 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 import equipoImage from "@/assets/equipo.webp";
+import { getAllTeamMembers } from "@/lib/data/teamMembers";
+import { TeamMembersGrid } from "../TeamMembersGrid";
 
-export function EquipoSection() {
+export async function EquipoSection() {
+  const teamMembers = await getAllTeamMembers();
+
+  console.log(teamMembers.length);
+
   return (
     <section
       id="equipo"
@@ -31,12 +37,16 @@ export function EquipoSection() {
             </Link>
           </Button>
         </div>
-        <div>
-          <Image
-            src={equipoImage}
-            alt="Primer plano de personas trabajando en un proyecto de marketing, mostrando las manos de cuatro personas con bolígrafos apuntando sobre papel y computadoras portátiles."
-            className="size-full rounded-3xl"
-          />
+        <div className="w-full">
+          {!teamMembers || teamMembers.length === 0 ? (
+            <Image
+              src={equipoImage}
+              alt="Primer plano de personas trabajando en un proyecto de marketing, mostrando las manos de cuatro personas con bolígrafos apuntando sobre papel y computadoras portátiles."
+              className="size-full rounded-3xl"
+            />
+          ) : (
+            <TeamMembersGrid teamMembers={teamMembers} />
+          )}
         </div>
       </div>
     </section>
