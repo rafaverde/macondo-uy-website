@@ -104,8 +104,10 @@ export const GET_PORTFOLIO_BY_SLUG = gql`
         clientName
         jobTitle
         relatedProjects {
-          ... on Portfolio {
-            ...PortfolioCardFields
+          nodes {
+            ... on Portfolio {
+              ...PortfolioCardFields
+            }
           }
         }
         projectImages {

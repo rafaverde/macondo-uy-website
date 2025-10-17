@@ -57,6 +57,8 @@ export default async function PortfolioCasePage({
     return notFound();
   }
 
+  const relatedProjects = portfolioCase.portfolioFg?.relatedProjects || [];
+
   const category = portfolioCase.portfolioCategories?.nodes[0]?.name;
   const imagesGallery = portfolioCase.portfolioFg.projectImages?.nodes;
   const videos = portfolioCase.portfolioFg.projectVideos?.nodes;
