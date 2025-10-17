@@ -1,5 +1,24 @@
 import { gql } from "@apollo/client";
 
+const PORTFOLIO_CARD_FIELDS = gql`
+  fragment PortfolioCardFields on Portfolio {
+    id
+    title
+    slug
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+    portfolioCategories(first: 1) {
+      nodes {
+        name
+      }
+    }
+  }
+`;
+
 export const GET_LATEST_PORTFOLIO_CASES = gql`
   query GetLatestPortfolioCases {
     portfolios(first: 50, where: { orderby: { field: DATE, order: DESC } }) {
@@ -64,6 +83,7 @@ export const GET_PAGINATED_PORTFOLIOS = gql`
 `;
 
 export const GET_PORTFOLIO_BY_SLUG = gql`
+  ${PORTFOLIO_CARD_FIELDS}
   query GetPortfolioBySlug($slug: ID!) {
     portfolio(id: $slug, idType: SLUG) {
       title
@@ -83,6 +103,11 @@ export const GET_PORTFOLIO_BY_SLUG = gql`
       portfolioFg {
         clientName
         jobTitle
+        relatedProjects {
+          ... on Portfolio {
+            ...PortfolioCardFields
+          }
+        }
         projectImages {
           nodes {
             ... on MediaItem {
