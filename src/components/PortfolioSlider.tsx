@@ -26,7 +26,7 @@ export function PortfolioSlider({
           {portfolioCases.map((caseItem) => (
             <CarouselItem
               key={caseItem.id}
-              className="pl-4 md:basis-1/2 lg:basis-1/3"
+              className="pl-4 md:basis-1/2 lg:basis-1/4 xl:basis-1/5"
             >
               <PortfolioCard portfolioCase={caseItem} />
             </CarouselItem>
