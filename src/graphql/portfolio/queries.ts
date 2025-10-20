@@ -19,6 +19,18 @@ const PORTFOLIO_CARD_FIELDS = gql`
   }
 `;
 
+export const GET_ALL_PORTFOLIO_CATEGORIES = gql`
+  query GetAllPortfolioCategories {
+    portfolioCategories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+  }
+`;
+
 export const GET_LATEST_PORTFOLIO_CASES = gql`
   query GetLatestPortfolioCases {
     portfolios(first: 50, where: { orderby: { field: DATE, order: DESC } }) {
@@ -75,6 +87,7 @@ export const GET_PAGINATED_PORTFOLIOS = gql`
         portfolioCategories(first: 1) {
           nodes {
             name
+            slug
           }
         }
       }
