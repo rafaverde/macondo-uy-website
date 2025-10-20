@@ -1,9 +1,34 @@
 import { PortfolioGrid } from "@/components/PortfolioGrid";
-import { getAllPortfolios } from "@/lib/data/portfolios";
+import {
+  GET_ALL_PORTFOLIO_CATEGORIES,
+  GET_PAGINATED_PORTFOLIOS,
+} from "@/graphql";
+import { client } from "@/lib/apollo";
+import {
+  AllPortfolioCategoriesResponse,
+  PaginatedPortfoliosResponse,
+  PortfolioCase,
+  PortfolioCategory,
+} from "@/types";
 import { CircleX } from "lucide-react";
 
 export default async function PortfolioPage() {
-  const { initialCases, pageInfo } = await getAllPortfolios();
+  const [allCasesData, categoriesData] = await Promise.all([
+    client.query<PaginatedPortfoliosResponse>({
+      query: GET_PAGINATED_PORTFOLIOS,
+      variables: {
+        first: 100,
+        after: null,
+      },
+    }),
+    client.query<AllPortfolioCategoriesResponse>({
+      query: GET_ALL_PORTFOLIO_CATEGORIES,
+    }),
+  ]);
+
+  const allCases: PortfolioCase[] = allCasesData.data.portfolios.nodes;
+  const categories: PortfolioCategory[] =
+    categoriesData.data.portfolioCategories.nodes;
 
   return (
     <section
@@ -14,7 +39,7 @@ export default async function PortfolioPage() {
         <h2 className="text-primary mx-auto text-center text-2xl font-bold md:max-w-1/2 md:text-4xl">
           Nuestros trabajos
         </h2>
-        {initialCases.length > 0 ? (
+        {allCases.length > 0 ? (
           <p className="text-foreground mx-auto mt-5 text-center md:max-w-2/3">
             Conocé algunos de los trabajos que desarrollamos para
             emprendimientos reales con desafíos únicos. Desde estrategias
@@ -30,7 +55,7 @@ export default async function PortfolioPage() {
           </div>
         )}
 
-        <PortfolioGrid initialCases={initialCases} pageInfo={pageInfo} />
+        <PortfolioGrid allCases={allCases} categories={categories} />
       </div>
     </section>
   );

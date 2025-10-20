@@ -70,3 +70,15 @@ export interface PaginatedPortfoliosResponse {
 export interface SinglePortfolioResponse {
   portfolio: PortfolioCase;
 }
+
+export interface PortfolioCategory {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+export interface AllPortfolioCategoriesResponse {
+  portfolioCategories: {
+    nodes: PortfolioCategory[];
+  };
+}
