@@ -21,43 +21,16 @@ interface PortfolioGridProps {
 export function PortfolioGrid({ allCases, categories }: PortfolioGridProps) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(JOBS_PER_PAGE);
-  const [isLoading, setIsLoading] = useState(false);
 
   const filteredCases = useMemo(() => {
-    // Log 1: Mostra qual filtro estamos tentando aplicar
-    console.log(
-      "--- Iniciando filtro para a categoria:",
-      activeCategory,
-      "---",
-    );
-
     if (!activeCategory) {
-      return allCases; // Se nenhum filtro, retorna todos
+      return allCases;
     }
-
-    const result = allCases.filter((caseItem) => {
-      const categoriesOfThisCase = caseItem.portfolioCategories?.nodes || [];
-      const hasMatch = categoriesOfThisCase.some(
+    return allCases.filter((caseItem) =>
+      caseItem.portfolioCategories?.nodes.some(
         (category) => category.slug === activeCategory,
-      );
-
-      // Log 2: Mostra a comparação para CADA item do portfólio
-      console.log(
-        `- Item: "${caseItem.title}"`,
-        ` | Categoria do item: [${categoriesOfThisCase.map((c) => `'${c.slug}'`).join(", ")}]`,
-        ` | Filtro ativo: '${activeCategory}'`,
-        ` | Correspondeu? ${hasMatch}`,
-      );
-
-      return hasMatch;
-    });
-
-    // Log 3: Mostra o resultado final do filtro
-    console.log(
-      `--- Filtro concluído. Encontrados: ${result.length} itens. ---`,
+      ),
     );
-
-    return result;
   }, [allCases, activeCategory]);
 
   const displayedCases = filteredCases.slice(0, visibleCount);
@@ -102,8 +75,8 @@ export function PortfolioGrid({ allCases, categories }: PortfolioGridProps) {
 
       {hasMore && (
         <div className="mt-12 text-center">
-          <Button size="xl" disabled={isLoading} onClick={handleLoadMore}>
-            {isLoading ? "Cargando..." : "Más trabajos"}
+          <Button size="xl" onClick={handleLoadMore}>
+            Más trabajos
           </Button>
         </div>
       )}
