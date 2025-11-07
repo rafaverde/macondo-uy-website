@@ -92,6 +92,22 @@ export function Footer() {
               <ChevronRight className="text-primary" /> Macondo{" "}
               <span className="text-primary"> Brasil</span>
             </Link>
+
+            <Link
+              href="/politica-de-privacidad"
+              className="hover:text-primary flex cursor-pointer items-center text-sm opacity-50 transition-all duration-300"
+            >
+              <ChevronRight className="text-primary" />
+              Políticas de Privacidad
+            </Link>
+
+            <Link
+              href="/politica-de-cookies"
+              className="hover:text-primary -mt-2 flex cursor-pointer items-center text-sm opacity-50 transition-all duration-300"
+            >
+              <ChevronRight className="text-primary" />
+              Políticas de Cookies
+            </Link>
           </div>
 
           <div className="text-background space-y-3">
