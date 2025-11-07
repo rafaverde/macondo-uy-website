@@ -1,3 +1,4 @@
+import { BUSINESS_LEGAL_DATA } from "@/lib/constants";
 import { spanishDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -29,14 +30,16 @@ export default function PoliticaDePrivacidadPage() {
           <a href="https://www.macondo.com.uy">https://www.macondo.com.uy</a>.
         </p>
         <p>
-          <strong>Razón Social:</strong> [Nombre Legal de la Agencia]
+          <strong>Razón Social:</strong> {BUSINESS_LEGAL_DATA.legalName}
           <br />
-          <strong>RUT:</strong> [Número de RUT]
+          <strong>RUT:</strong> {BUSINESS_LEGAL_DATA.RUT}
           <br />
-          <strong>Domicilio:</strong> [Dirección Física en Uruguay]
+          <strong>Domicilio:</strong> {BUSINESS_LEGAL_DATA.address}
           <br />
-          <strong>Email de contacto:</strong> [Email de Contacto para
-          Privacidad]
+          <strong>Email de contacto:</strong>{" "}
+          <Link href={`mailto:${BUSINESS_LEGAL_DATA.email}`}>
+            {BUSINESS_LEGAL_DATA.email}
+          </Link>
         </p>
         <p>
           Esta política describe cómo recopilamos, usamos y protegemos su
@@ -122,8 +125,11 @@ export default function PoliticaDePrivacidadPage() {
           </li>
         </ul>
         <p>
-          Para ejercer estos derechos, puede contactarnos en [Email de Contacto
-          para Privacidad].
+          Para ejercer estos derechos, puede contactarnos en{" "}
+          <Link href={`mailto:${BUSINESS_LEGAL_DATA.email}`}>
+            {BUSINESS_LEGAL_DATA.email}
+          </Link>
+          .
         </p>
 
         <h3 className="mt-4 mb-2 text-lg font-bold">

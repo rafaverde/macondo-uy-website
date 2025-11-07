@@ -90,3 +90,18 @@ export const SOCIAL_LINKS: SocialLinkProps[] = [
 
 // Grid do portfolio
 export const JOBS_PER_PAGE = 6;
+
+// Dados Legais Empresa
+interface BusinessDataProps {
+  legalName: string;
+  RUT: string;
+  address: string;
+  email?: string;
+}
+
+export const BUSINESS_LEGAL_DATA: BusinessDataProps = {
+  legalName: "Gerardo Carvalho Ponte",
+  RUT: "217825410-018",
+  address: "Asamblea 4313, Apto 003",
+  email: "carvalhogerardo79@gmail.com",
+};
