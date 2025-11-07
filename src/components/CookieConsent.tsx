@@ -67,7 +67,7 @@ export default function CookieConsent() {
                 </Link>{" "}
                 y nuestra{" "}
                 <Link
-                  href="/politica-de-privacidade"
+                  href="/politica-de-privacidad"
                   className="hover:text-primary underline"
                 >
                   Política de privacidad.
