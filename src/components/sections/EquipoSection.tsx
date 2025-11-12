@@ -31,7 +31,7 @@ export async function EquipoSection() {
           </div>
 
           <Button asChild size="xl">
-            <Link href="https://wa.me/5559895006439?text=Hola.%20Quiero%20contarles%20lo%20que%20necesito%20y%20ver%20si%20pueden%20ayudarne.">
+            <Link href="https://wa.me/+59895006439?text=Hola.%20Quiero%20contarles%20lo%20que%20necesito%20y%20ver%20si%20pueden%20ayudarne.">
               Me gusta, quiero hablar
               <ArrowRight />
             </Link>
