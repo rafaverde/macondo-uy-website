@@ -36,7 +36,6 @@ export function generatePortfolioMetadata(
   }
 
   const imageUrl = portfolioCase.featuredImage?.node?.sourceUrl;
-  console.log(portfolioCase);
 
   return {
     title: portfolioCase.title,

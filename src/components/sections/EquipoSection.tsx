@@ -10,8 +10,6 @@ import { TeamMembersGrid } from "../TeamMembersGrid";
 export async function EquipoSection() {
   const teamMembers = await getAllTeamMembers();
 
-  console.log(teamMembers.length);
-
   return (
     <section
       id="equipo"
